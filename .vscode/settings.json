@@ -1,0 +1,16 @@
+{
+  "godotTools.editorPath.godot4": "p:\\Godot\\Godots\\Editors\\Godot_v4_2_1-stable_win64_exe\\Godot_v4.2.1-stable_win64.exe",
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    ".godot/**": true,
+    "**/*.tscn": true,
+    "**/*.import": true
+  },
+  "godotTools.inlayHints.gdscript": false,
+  "editor.tabSize": 4
+}

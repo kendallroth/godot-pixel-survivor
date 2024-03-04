@@ -1,0 +1,60 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpjvopuq482nn"]
+
+[ext_resource type="Script" path="res://scenes/ui/ability_upgrade_card.gd" id="1_cvn82"]
+[ext_resource type="FontFile" uid="uid://8od02rb1w3yn" path="res://assets/fonts/Kenney Pixel.ttf" id="3_3pkx7"]
+
+[node name="AbilityUpgradeCard" type="PanelContainer"]
+custom_minimum_size = Vector2(120, 150)
+script = ExtResource("1_cvn82")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+clip_contents = true
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="NameLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Name"
+horizontal_alignment = 1
+
+[node name="DescriptionLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_3pkx7")
+text = "Sample description here"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="MaxAmountLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.501961)
+theme_override_fonts/font = ExtResource("3_3pkx7")
+theme_override_font_sizes/font_size = 16
+text = "Max 2"
+horizontal_alignment = 1
+
+[node name="AmountLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_3pkx7")
+theme_override_font_sizes/font_size = 16
+text = "(x2)"
+horizontal_alignment = 1

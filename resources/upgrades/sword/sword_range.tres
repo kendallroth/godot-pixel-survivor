@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=2 format=3 uid="uid://ctvx1mnio8g7l"]
+
+[ext_resource type="Script" path="res://resources/upgrades/ability_upgrade.gd" id="1_gcrlu"]
+
+[resource]
+script = ExtResource("1_gcrlu")
+id = "sword_range"
+name = "Sword Range"
+description = "Increases the max sword range by 10%."
+max_quantity = 10

@@ -1,0 +1,77 @@
+[gd_scene load_steps=5 format=3 uid="uid://bn80n7nmv22x6"]
+
+[ext_resource type="Script" path="res://scenes/ui/game_over_screen.gd" id="1_3g62x"]
+[ext_resource type="FontFile" uid="uid://b67gwnaqh5lw0" path="res://assets/fonts/Kenney Pixel Square.ttf" id="2_5d4ku"]
+[ext_resource type="StyleBox" uid="uid://cre0yxncpljyo" path="res://themes/styles/overlay_panel.tres" id="2_lc4fv"]
+[ext_resource type="FontFile" uid="uid://8od02rb1w3yn" path="res://assets/fonts/Kenney Pixel.ttf" id="3_rgc16"]
+
+[node name="GameOverScreen" type="CanvasLayer"]
+script = ExtResource("1_3g62x")
+
+[node name="OverlayPanel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_lc4fv")
+
+[node name="MarginContainer" type="MarginContainer" parent="OverlayPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="OverlayPanel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="OverlayPanel/MarginContainer/PanelContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OverlayPanel/MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TitleLabel" type="Label" parent="OverlayPanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_5d4ku")
+theme_override_font_sizes/font_size = 24
+text = "Title"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MessageLabel" type="Label" parent="OverlayPanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_rgc16")
+theme_override_font_sizes/font_size = 16
+text = "Message"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer" type="Control" parent="OverlayPanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RestartButton" type="Button" parent="OverlayPanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_5d4ku")
+theme_override_font_sizes/font_size = 16
+text = "Restart"
+
+[node name="QuitButton" type="Button" parent="OverlayPanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_5d4ku")
+text = "Quit"
