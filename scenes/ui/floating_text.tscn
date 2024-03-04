@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scenes/ui/floating_text.gd" id="1_i30b1"]
 
 [node name="FloatingText" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_i30b1")
 
 [node name="TextLabel" type="Label" parent="."]
