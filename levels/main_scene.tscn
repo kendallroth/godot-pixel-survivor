@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cjqqt5hwelnde"]
+[gd_scene load_steps=22 format=3 uid="uid://cjqqt5hwelnde"]
 
 [ext_resource type="PackedScene" uid="uid://bwqebkaidgjxs" path="res://scenes/camera/game_camera.tscn" id="1_73mi5"]
 [ext_resource type="PackedScene" uid="uid://jj5i8ep0olbv" path="res://scenes/objects/player/player.tscn" id="1_p7alp"]
@@ -14,8 +14,10 @@
 [ext_resource type="Resource" uid="uid://c7k3ein3itqsl" path="res://resources/upgrades/axe/axe_rate.tres" id="8_2isy3"]
 [ext_resource type="PackedScene" uid="uid://ck57qfpbatoqq" path="res://scenes/objects/enemies/enemy_basic/enemy_basic.tscn" id="8_8xeqv"]
 [ext_resource type="Resource" uid="uid://woejyww5ryxb" path="res://resources/upgrades/axe/axe_damage.tres" id="8_klms1"]
+[ext_resource type="Resource" uid="uid://cw3c6nk3jguwc" path="res://resources/upgrades/player/player_speed.tres" id="9_1dwcx"]
 [ext_resource type="PackedScene" uid="uid://cvgl1twpp0pg3" path="res://scenes/ui/debug_overlay.tscn" id="9_rx8i1"]
 [ext_resource type="PackedScene" uid="uid://btag0253s7hhs" path="res://scenes/objects/enemies/enemy_ghost/enemy_ghost.tscn" id="9_tnoqx"]
+[ext_resource type="PackedScene" uid="uid://8io24htcugal" path="res://scenes/ui/vignette.tscn" id="12_8knsj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bfhtu"]
 texture = ExtResource("3_a1gin")
@@ -473,7 +475,7 @@ target_experience = 3
 target_experience_growth = 3
 
 [node name="UpgradeManager" parent="Managers" node_paths=PackedStringArray("experience_manager") instance=ExtResource("4_7wpoc")]
-upgrade_pool = Array[Resource("res://resources/upgrades/ability_upgrade.gd")]([ExtResource("5_ow53y"), ExtResource("5_n56af"), ExtResource("4_qa5xj"), ExtResource("8_2isy3"), ExtResource("8_klms1")])
+upgrade_pool = Array[Resource("res://resources/upgrades/ability_upgrade.gd")]([ExtResource("5_ow53y"), ExtResource("5_n56af"), ExtResource("4_qa5xj"), ExtResource("8_2isy3"), ExtResource("8_klms1"), ExtResource("9_1dwcx")])
 experience_manager = NodePath("../ExperienceManager")
 
 [node name="EnemyManager" parent="Managers" node_paths=PackedStringArray("level_manager") instance=ExtResource("1_w6ugv")]
@@ -482,6 +484,8 @@ basic_enemy_scene = ExtResource("8_8xeqv")
 ghost_enemy_scene = ExtResource("9_tnoqx")
 
 [node name="UI" type="Node" parent="."]
+
+[node name="Vignette" parent="UI" instance=ExtResource("12_8knsj")]
 
 [node name="LevelUI" parent="UI" node_paths=PackedStringArray("experience_manager", "level_manager") instance=ExtResource("2_fnk0g")]
 experience_manager = NodePath("../../Managers/ExperienceManager")

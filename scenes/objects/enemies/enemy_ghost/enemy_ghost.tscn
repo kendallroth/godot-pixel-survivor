@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://btag0253s7hhs"]
+[gd_scene load_steps=21 format=3 uid="uid://btag0253s7hhs"]
 
 [ext_resource type="PackedScene" uid="uid://yw5tcqcppqoe" path="res://scenes/components/health_component.tscn" id="1_0t1x8"]
 [ext_resource type="Texture2D" uid="uid://b4vptrsau8q2x" path="res://scenes/objects/enemies/enemy_ghost/enemy_ghost.png" id="1_ajswv"]
@@ -9,6 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://06tj2arwgirk" path="res://scenes/components/vial_drop_component.tscn" id="4_6yq27"]
 [ext_resource type="PackedScene" uid="uid://c455ngw6uqq7v" path="res://scenes/components/hit_flash_component.tscn" id="6_ccajx"]
 [ext_resource type="Shader" path="res://scenes/components/hit_flash_component.gdshader" id="7_pqba4"]
+[ext_resource type="AudioStream" uid="uid://dk6dqwald2ey2" path="res://assets/audio/effects/enemy_hit/footstep_carpet_001.ogg" id="9_culm3"]
+[ext_resource type="AudioStream" uid="uid://bh00fvtpctc4s" path="res://assets/audio/effects/enemy_hit/footstep_carpet_000.ogg" id="9_jrwwp"]
+[ext_resource type="AudioStream" uid="uid://be06oso5m0e81" path="res://assets/audio/effects/enemy_hit/footstep_carpet_002.ogg" id="11_yt3s1"]
+[ext_resource type="AudioStream" uid="uid://brfqxd4abc5om" path="res://assets/audio/effects/enemy_hit/footstep_carpet_003.ogg" id="12_l1iex"]
+[ext_resource type="AudioStream" uid="uid://dh0xnsgk1hbce" path="res://assets/audio/effects/enemy_hit/footstep_carpet_004.ogg" id="13_xr2qq"]
 
 [sub_resource type="Animation" id="Animation_i3hxi"]
 length = 0.4
@@ -134,10 +139,12 @@ hit_flash_material = SubResource("ShaderMaterial_bx362")
 [node name="DeathComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("2_rgcbp")]
 health_component = NodePath("../HealthComponent")
 sprite = NodePath("../BodySpriteParent/BodySprite")
+death_audio_streams = Array[AudioStream]([ExtResource("9_jrwwp"), ExtResource("9_culm3"), ExtResource("11_yt3s1"), ExtResource("12_l1iex"), ExtResource("13_xr2qq")])
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_qyedp")]
 collision_layer = 0
 health_component = NodePath("../HealthComponent")
+hit_audio_streams = Array[AudioStream]([ExtResource("9_jrwwp"), ExtResource("9_culm3"), ExtResource("11_yt3s1"), ExtResource("12_l1iex"), ExtResource("13_xr2qq")])
 
 [node name="HurtboxCollider" type="CollisionShape2D" parent="HurtboxComponent"]
 visible = false

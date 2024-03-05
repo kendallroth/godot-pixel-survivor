@@ -61,7 +61,7 @@ func on_ability_upgraded(upgrade: AbilityUpgrade, upgrades: Dictionary):
         spawn_timer.wait_time = max(base_wait_time * (1 - percent_reduction), 0.1)
         spawn_timer.start()
     elif upgrade.id == "sword_damage":
-        var percent_increase = upgrades["sword_damage"]["quantity"] * 0.1
+        var percent_increase = upgrades["sword_damage"]["quantity"] * 0.2
         damage = base_damage * (1 + percent_increase)
     elif upgrade.id == "sword_range":
         var percent_increase = upgrades["sword_range"]["quantity"] * 0.1

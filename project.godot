@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Pixel Survivors"
-run/main_scene="res://levels/main_scene.tscn"
+run/main_scene="res://levels/main_menu.tscn"
 config/features=PackedStringArray("4.2")
 boot_splash/bg_color=Color(0.917647, 0.647059, 0.423529, 1)
 boot_splash/image="res://assets/ui/splash_screen.png"
@@ -20,6 +20,7 @@ config/icon="res://icon.png"
 [autoload]
 
 GameEvents="*res://scenes/autoload/game_events.tscn"
+MusicAudioPlayer="*res://scenes/autoload/music_audio_player.tscn"
 
 [debug]
 

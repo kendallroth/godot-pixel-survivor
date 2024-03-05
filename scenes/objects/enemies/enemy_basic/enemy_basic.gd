@@ -12,7 +12,7 @@ func _ready():
 func _physics_process(delta):
     velocity_component.accelerate_to_player()
     velocity_component.move(self)
-    velocity_component.face_player(false)
+    velocity_component.update_look_direction(false)
 
 
 func on_died():

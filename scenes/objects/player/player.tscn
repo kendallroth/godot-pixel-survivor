@@ -1,10 +1,16 @@
-[gd_scene load_steps=13 format=3 uid="uid://jj5i8ep0olbv"]
+[gd_scene load_steps=18 format=3 uid="uid://jj5i8ep0olbv"]
 
 [ext_resource type="Script" path="res://scenes/objects/player/player.gd" id="1_232lt"]
 [ext_resource type="PackedScene" uid="uid://dp0i4qil5vmbh" path="res://scenes/abilities/sword/sword_ability_controller.tscn" id="2_g3if1"]
+[ext_resource type="Script" path="res://scenes/components/velocity_component.gd" id="2_o0b4d"]
 [ext_resource type="PackedScene" uid="uid://yw5tcqcppqoe" path="res://scenes/components/health_component.tscn" id="2_q5i45"]
 [ext_resource type="Texture2D" uid="uid://clewtoymnwe4v" path="res://scenes/objects/player/player.png" id="2_sakgn"]
-[ext_resource type="StyleBox" uid="uid://b7ghvu1pq38ig" path="res://themes/styles/progress_bar_background.tres" id="4_5q5xd"]
+[ext_resource type="PackedScene" uid="uid://cefsg5yb2fms8" path="res://scenes/components/random_audio_player_2d_component.tscn" id="2_vrg6j"]
+[ext_resource type="AudioStream" uid="uid://6snpsw2sl68" path="res://assets/audio/effects/player_hit/impactMining_000.ogg" id="3_gqboj"]
+[ext_resource type="AudioStream" uid="uid://d3vnpuhpvaj6a" path="res://assets/audio/effects/player_hit/impactMining_001.ogg" id="4_74na6"]
+[ext_resource type="AudioStream" uid="uid://bp4nned1td73v" path="res://assets/audio/effects/player_hit/impactMining_002.ogg" id="5_uwxc7"]
+[ext_resource type="AudioStream" uid="uid://bwphhmkmkjfpt" path="res://assets/audio/effects/player_hit/impactMining_003.ogg" id="6_ql7l8"]
+[ext_resource type="AudioStream" uid="uid://bjfjgvj82scne" path="res://assets/audio/effects/player_hit/impactMining_004.ogg" id="7_ckb0e"]
 
 [sub_resource type="Animation" id="Animation_a2ei7"]
 length = 0.001
@@ -99,14 +105,6 @@ radius = 30.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_4isjq"]
 radius = 8.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wx2cs"]
-bg_color = Color(0.262745, 0.882353, 0.701961, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.247059, 0.14902, 0.192157, 1)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_dhsnc"]
 radius = 6.0
 
@@ -119,6 +117,15 @@ script = ExtResource("1_232lt")
 libraries = {
 "": SubResource("AnimationLibrary_1q4gx")
 }
+
+[node name="HitAudioPlayerComponent" parent="." instance=ExtResource("2_vrg6j")]
+audio_streams = Array[AudioStream]([ExtResource("3_gqboj"), ExtResource("4_74na6"), ExtResource("5_uwxc7"), ExtResource("6_ql7l8"), ExtResource("7_ckb0e")])
+
+[node name="VelocityComponent" type="Node" parent="." node_paths=PackedStringArray("sprite_parent")]
+script = ExtResource("2_o0b4d")
+max_speed = 90
+acceleration = 25
+sprite_parent = NodePath("../BodySpriteParent")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_q5i45")]
 
@@ -141,12 +148,12 @@ collision_mask = 4
 unique_name_in_owner = true
 shape = SubResource("CircleShape2D_me0v8")
 
-[node name="HitboxArea" type="Area2D" parent="."]
+[node name="HurtboxArea" type="Area2D" parent="."]
 position = Vector2(0, -7)
 collision_layer = 0
 collision_mask = 32
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxArea"]
 shape = SubResource("CircleShape2D_4isjq")
 debug_color = Color(0.764706, 0.423529, 0.419608, 0.419608)
 
@@ -157,8 +164,6 @@ offset_top = -25.0
 offset_right = 16.0
 offset_bottom = -21.0
 pivot_offset = Vector2(16, 3)
-theme_override_styles/background = ExtResource("4_5q5xd")
-theme_override_styles/fill = SubResource("StyleBoxFlat_wx2cs")
 max_value = 1.0
 value = 0.5
 show_percentage = false

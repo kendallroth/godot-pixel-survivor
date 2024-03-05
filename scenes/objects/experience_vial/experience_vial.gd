@@ -43,3 +43,6 @@ func on_area_entered(other: Area2D):
         .set_delay(0.45)
     tween.chain()
     tween.tween_callback(collect)
+
+    # TODO: Consider waiting to play until actually picked up by player
+    $PickupAudioPlayerComponent.play_random()

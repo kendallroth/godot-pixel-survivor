@@ -2,7 +2,7 @@ extends Node
 class_name VelocityComponent
 
 
-@export_range(1, 100) var max_speed := 40
+@export_range(1, 250) var max_speed := 40
 ## Acceleration controls the rate at which enemies can change move direction (lower is more time)
 @export_range(0, 100) var acceleration := 5
 @export var sprite_parent: Node2D
@@ -38,7 +38,7 @@ func move(character_body: CharacterBody2D):
     velocity = character_body.velocity
 
 
-func face_player(faces_right: bool):
+func update_look_direction(faces_right: bool):
     if sprite_parent:
         var move_sign = sign(velocity.x)
         if move_sign != 0:

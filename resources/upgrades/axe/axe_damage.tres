@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=3 format=3 uid="uid://woejyww5ryxb"]
 
-[ext_resource type="Resource" uid="uid://ltn4dj6i7vwm" path="res://resources/upgrades/axe_ability.tres" id="1_fgecv"]
+[ext_resource type="Resource" uid="uid://ltn4dj6i7vwm" path="res://resources/upgrades/axe/axe_ability.tres" id="1_fgecv"]
 [ext_resource type="Script" path="res://resources/upgrades/ability_upgrade.gd" id="1_gmy0t"]
 
 [resource]
@@ -9,4 +9,4 @@ id = "axe_damage"
 name = "Axe Damage"
 description = "Increases the axe damage by 10%."
 required_ability = ExtResource("1_fgecv")
-unique = false
+max_quantity = 0

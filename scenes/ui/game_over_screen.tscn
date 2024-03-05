@@ -1,77 +1,147 @@
-[gd_scene load_steps=5 format=3 uid="uid://bn80n7nmv22x6"]
+[gd_scene load_steps=9 format=3 uid="uid://bn80n7nmv22x6"]
 
 [ext_resource type="Script" path="res://scenes/ui/game_over_screen.gd" id="1_3g62x"]
-[ext_resource type="FontFile" uid="uid://b67gwnaqh5lw0" path="res://assets/fonts/Kenney Pixel Square.ttf" id="2_5d4ku"]
-[ext_resource type="StyleBox" uid="uid://cre0yxncpljyo" path="res://themes/styles/overlay_panel.tres" id="2_lc4fv"]
-[ext_resource type="FontFile" uid="uid://8od02rb1w3yn" path="res://assets/fonts/Kenney Pixel.ttf" id="3_rgc16"]
+[ext_resource type="AudioStream" uid="uid://dx1wykmuj0nin" path="res://assets/audio/music/victory_jingle.ogg" id="2_ub25q"]
+[ext_resource type="PackedScene" uid="uid://bat0dhmgguogl" path="res://scenes/ui/sound_button.tscn" id="2_won0t"]
+[ext_resource type="AudioStream" uid="uid://cm0rwwwn3ixaq" path="res://assets/audio/music/defeat_jingle.ogg" id="3_l0io1"]
+
+[sub_resource type="Animation" id="Animation_bkheg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2t82f"]
+resource_name = "in"
+length = 0.15
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_bk3fl"]
+resource_name = "out"
+length = 0.15
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ico7c"]
+_data = {
+"RESET": SubResource("Animation_bkheg"),
+"in": SubResource("Animation_2t82f"),
+"out": SubResource("Animation_bk3fl")
+}
 
 [node name="GameOverScreen" type="CanvasLayer"]
 script = ExtResource("1_3g62x")
 
-[node name="OverlayPanel" type="Panel" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ico7c")
+}
+autoplay = "in"
+
+[node name="VictoryAudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ub25q")
+volume_db = -6.0
+bus = &"sfx"
+
+[node name="DefeatAudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_l0io1")
+volume_db = -6.0
+bus = &"sfx"
+
+[node name="Background" type="ColorRect" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = ExtResource("2_lc4fv")
+color = Color(0.254902, 0.14902, 0.196078, 0.501961)
 
-[node name="MarginContainer" type="MarginContainer" parent="OverlayPanel"]
-layout_mode = 1
+[node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="OverlayPanel/MarginContainer"]
+[node name="ContentContainer" type="PanelContainer" parent="MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="OverlayPanel/MarginContainer/PanelContainer"]
-custom_minimum_size = Vector2(200, 200)
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ContentContainer"]
+custom_minimum_size = Vector2(180, 180)
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="OverlayPanel/MarginContainer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ContentContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="TitleLabel" type="Label" parent="OverlayPanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="MarginContainer/ContentContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_5d4ku")
-theme_override_font_sizes/font_size = 24
+theme_override_colors/font_outline_color = Color(0.254902, 0.14902, 0.196078, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 32
 text = "Title"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MessageLabel" type="Label" parent="OverlayPanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="MessageLabel" type="Label" parent="MarginContainer/ContentContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_rgc16")
-theme_override_font_sizes/font_size = 16
+theme_override_colors/font_outline_color = Color(0.254902, 0.14902, 0.196078, 1)
+theme_override_constants/outline_size = 6
 text = "Message"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Spacer" type="Control" parent="OverlayPanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Spacer" type="Control" parent="MarginContainer/ContentContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="RestartButton" type="Button" parent="OverlayPanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="RestartButton" parent="MarginContainer/ContentContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_won0t")]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_5d4ku")
-theme_override_font_sizes/font_size = 16
 text = "Restart"
 
-[node name="QuitButton" type="Button" parent="OverlayPanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="QuitButton" parent="MarginContainer/ContentContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_won0t")]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_5d4ku")
 text = "Quit"

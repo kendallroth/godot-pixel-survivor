@@ -1,44 +1,40 @@
 extends CharacterBody2D
 
-const MAX_SPEED = 125
-const ACCELERATION_SMOOTHING = 20
-
 @onready var abilities_node := $Abilities
 @onready var animation_player := $AnimationPlayer
 @onready var health_component := $HealthComponent
 @onready var sprite_parent := $BodySpriteParent
 @onready var damage_timer := $DamageTimer
 @onready var health_bar := $HealthBar
+@onready var velocity_component := $VelocityComponent
 
+# Damage (static) is applied on an interval while enemies remaing colliding with player
+# TODO: Consider moving DamageTimer into script
 var number_colliding_bodies := 0
+var base_speed: float = 0
 
 
 func _ready():
-    $HitboxArea.body_entered.connect(on_body_entered)
-    $HitboxArea.body_exited.connect(on_body_exited)
+    $HurtboxArea.body_entered.connect(on_body_entered)
+    $HurtboxArea.body_exited.connect(on_body_exited)
     damage_timer.timeout.connect(on_damage_timer_timeout)
     health_component.health_changed.connect(on_health_changed)
     health_component.died.connect(on_died)
     GameEvents.player_upgraded_ability.connect(on_player_upgraded_ability)
     
+    base_speed = velocity_component.max_speed
     health_bar.value = health_component.health_percent
 
 
 func _physics_process(delta):
     var movement := get_movement()
-    # Frame-rate independent lerp (use higher value for less smoothing)
-    var target_velocity := movement * MAX_SPEED
-    var current_velocity = velocity.lerp(target_velocity, 1 - exp(-delta * ACCELERATION_SMOOTHING))
-    set_velocity(current_velocity)
-    move_and_slide()
+    var direction = movement.normalized()
+    velocity_component.accelerate_in_direction(direction)
+    velocity_component.move(self)
+    velocity_component.update_look_direction(true)
 
     if movement != Vector2.ZERO:
         animation_player.play("walk")
-
-        # Flip the player to face movement direction
-        var move_sign = sign(movement.x)
-        if move_sign != 0:
-            sprite_parent.scale = Vector2(move_sign, 1)
     else:
         animation_player.play("RESET")
 
@@ -56,6 +52,7 @@ func check_deal_damage():
     
     health_component.damage(1)
     damage_timer.start()
+    $HitAudioPlayerComponent.play_random()
 
 
 func on_body_entered(other_body: Node2D):
@@ -78,11 +75,12 @@ func on_health_changed(change: float, value: float, percent: float):
 
 
 func on_player_upgraded_ability(upgrade: AbilityUpgrade, current_upgrades: Dictionary):
-    if !upgrade is Ability:
-        return
-
-    var ability_instance = upgrade.controller_scene.instantiate()
-    abilities_node.add_child(ability_instance)
+    if upgrade is Ability:
+        var ability_instance = upgrade.controller_scene.instantiate()
+        abilities_node.add_child(ability_instance)
+    elif upgrade.id == "player_speed":
+        var percent_increase = current_upgrades["player_speed"]["quantity"] * 0.1
+        velocity_component.max_speed = base_speed * (1 + percent_increase)
 
 
 func on_died():

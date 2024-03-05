@@ -1,9 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://5bwfhswksx55"]
+[gd_scene load_steps=3 format=3 uid="uid://5bwfhswksx55"]
 
 [ext_resource type="Script" path="res://scenes/ui/pause_screen.gd" id="1_7wdsb"]
 [ext_resource type="StyleBox" uid="uid://cre0yxncpljyo" path="res://themes/styles/overlay_panel.tres" id="1_l704n"]
-[ext_resource type="FontFile" uid="uid://b67gwnaqh5lw0" path="res://assets/fonts/Kenney Pixel Square.ttf" id="2_v4bn8"]
-[ext_resource type="FontFile" uid="uid://8od02rb1w3yn" path="res://assets/fonts/Kenney Pixel.ttf" id="3_anlkr"]
 
 [node name="PauseScreen" type="CanvasLayer"]
 script = ExtResource("1_7wdsb")
@@ -24,8 +22,7 @@ theme_override_constants/separation = 16
 
 [node name="PauseLabel" type="Label" parent="OverlayContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_v4bn8")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 32
 text = "Paused"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -33,8 +30,6 @@ vertical_alignment = 1
 [node name="MessageLabel" type="Label" parent="OverlayContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 0.74902)
-theme_override_fonts/font = ExtResource("3_anlkr")
-theme_override_font_sizes/font_size = 16
 text = "ESC to unpause"
 horizontal_alignment = 1
 vertical_alignment = 1

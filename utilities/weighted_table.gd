@@ -19,3 +19,10 @@ func get_item() -> Variant:
 
     # Last-ditch effort to pick something (should never happen)
     return items.pick_random()
+
+
+func remove_item(item_to_remove: Variant):
+    items = items.filter(func(item): return item["item"] != item_to_remove)
+    weight_sum = 0
+    for item in items:
+        weight_sum += item["weight"]

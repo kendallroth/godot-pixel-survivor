@@ -18,7 +18,7 @@ func _physics_process(delta):
         velocity_component.decelerate()
 
     velocity_component.move(self)
-    velocity_component.face_player(true)
+    velocity_component.update_look_direction(true)
 
 
 func set_is_moving(moving: bool):

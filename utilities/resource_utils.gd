@@ -20,7 +20,6 @@ static func assign_resource_properties_from_parent(
 
     for prop in parent_instance.get_property_list():
         if !resource_prop_names.has(prop.name):
-            print("setting %s" % prop.name)
             child_instance.set(prop.name, parent_instance.get(prop.name))
 
     return child_instance

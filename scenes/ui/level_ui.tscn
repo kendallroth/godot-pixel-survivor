@@ -1,15 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://bpgiibe3coqhx"]
+[gd_scene load_steps=3 format=3 uid="uid://bpgiibe3coqhx"]
 
 [ext_resource type="Script" path="res://scenes/ui/level_ui.gd" id="1_pii4w"]
-[ext_resource type="StyleBox" uid="uid://b7ghvu1pq38ig" path="res://themes/styles/progress_bar_background.tres" id="3_uu0n7"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iwdff"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tm7wb"]
 bg_color = Color(0.458824, 0.890196, 1, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.247059, 0.14902, 0.192157, 1)
+border_color = Color(0.8, 0.8, 0.8, 0)
 
 [node name="LevelUI" type="CanvasLayer"]
 script = ExtResource("1_pii4w")
@@ -74,8 +73,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 mouse_filter = 2
-theme_override_styles/background = ExtResource("3_uu0n7")
-theme_override_styles/fill = SubResource("StyleBoxFlat_iwdff")
+theme_override_styles/fill = SubResource("StyleBoxFlat_tm7wb")
 max_value = 1.0
 value = 0.5
 show_percentage = false

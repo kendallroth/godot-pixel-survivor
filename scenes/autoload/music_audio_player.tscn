@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyu7xvlm38g0j"]
+
+[ext_resource type="AudioStream" uid="uid://mawobogcbdaj" path="res://assets/audio/music/game_music.mp3" id="1_n2o3j"]
+[ext_resource type="Script" path="res://scenes/autoload/music_audio_player.gd" id="2_rtpfa"]
+
+[node name="MusicAudioPlayer" type="AudioStreamPlayer"]
+process_mode = 3
+stream = ExtResource("1_n2o3j")
+volume_db = -20.0
+autoplay = true
+bus = &"music"
+script = ExtResource("2_rtpfa")
+
+[node name="DelayTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true

@@ -4,11 +4,17 @@ class_name DeathComponent
 
 @export var health_component: HealthComponent
 @export var sprite: Sprite2D
+@export var death_audio_streams: Array[AudioStream] = []
+
+@onready var audio_player := $RandomAudioPlayerComponent
 
 
 func _ready():
-    $ParticleSystem.texture = sprite.texture
     health_component.died.connect(on_died)
+
+    $ParticleSystem.texture = sprite.texture
+    if audio_player:
+        audio_player.audio_streams = death_audio_streams
 
 
 func on_died():
@@ -24,3 +30,6 @@ func on_died():
 
     global_position = spawn_position
     $AnimationPlayer.play("default")
+
+    if audio_player:
+        audio_player.play_random()

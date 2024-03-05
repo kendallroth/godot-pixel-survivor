@@ -6,7 +6,7 @@ signal died()
 
 @export var max_health: float = 10
 
-var current_health
+var current_health: float
 var alive: bool:
     get:
         return current_health > 0
