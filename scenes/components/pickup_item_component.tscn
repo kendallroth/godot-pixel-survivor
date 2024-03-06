@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpef5s2ea470p"]
+
+[ext_resource type="Script" path="res://scenes/components/pickup_item_component.gd" id="1_77f1w"]
+[ext_resource type="PackedScene" uid="uid://cefsg5yb2fms8" path="res://scenes/components/random_audio_player_2d_component.tscn" id="2_trdse"]
+
+[node name="PickupItemComponent" type="Node"]
+script = ExtResource("1_77f1w")
+
+[node name="PickupAudioPlayerComponent" parent="." instance=ExtResource("2_trdse")]
+process_mode = 3
+volume_db = -3.0

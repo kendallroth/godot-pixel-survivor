@@ -19,6 +19,11 @@ func _ready():
     current_health = max_health
 
 
+func heal(value: float):
+    current_health = min(current_health + value, max_health)
+    health_changed.emit(value, current_health, health_percent)
+
+
 func damage(value: float):
     current_health = max(current_health - value, 0)
     health_changed.emit(-value, current_health, health_percent)

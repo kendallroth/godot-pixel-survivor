@@ -4,10 +4,11 @@ class_name LevelManager
 signal level_time_changed(seconds: int)
 signal level_difficulty_changed(difficulty: int)
 
-## How frequently difficulty is raised
+## How frequently difficulty level is raised (in seconds)
 const DIFFICULTY_INTERVAL = 5
 
-@export_range(0, 120) var completion_time = 60
+## Game length
+@export_range(0, 120) var level_time_total = 60
 @export var game_over_screen_scene: PackedScene
 @export var pause_screen_scene: PackedScene
 
@@ -15,7 +16,11 @@ const DIFFICULTY_INTERVAL = 5
 
 var level_difficulty = 0
 ## Time elapsed since level started
-var level_time = 0
+var level_time_elapsed = 0
+
+var level_time_remaining:
+    get:
+        return level_time_total - level_time_elapsed
 
 
 func _ready():
@@ -23,6 +28,8 @@ func _ready():
     level_timer.timeout.connect(on_timer_tick)
 
     set_process_input(true)
+    # NOTE: Must wait to emit event until next frame (to allow listeners to attach)
+    Callable(func(): level_time_changed.emit(level_time_total)).call_deferred()
 
 
 func _input(event):
@@ -50,16 +57,16 @@ func show_game_over(win: bool):
 
 
 func on_timer_tick():
-    level_time += 1
-    level_time_changed.emit(level_time)
+    level_time_elapsed += 1
+    level_time_changed.emit(level_time_remaining)
 
-    var target_difficulty = level_time / DIFFICULTY_INTERVAL
+    var target_difficulty = level_time_elapsed / DIFFICULTY_INTERVAL
     if target_difficulty > level_difficulty:
         level_difficulty += 1
         level_difficulty_changed.emit(level_difficulty)
         GameEvents.level_difficulty_changed.emit(level_difficulty)
 
-    if level_time >= completion_time:
+    if level_time_elapsed >= level_time_total:
         show_game_over(true)
         level_timer.stop()
 

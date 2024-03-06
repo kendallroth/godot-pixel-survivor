@@ -6,5 +6,5 @@
 script = ExtResource("1_bpmgy")
 id = "player_speed"
 name = "Player Speed"
-description = "Increased player speed by 10%."
+description = "Increase player speed by 10%."
 max_quantity = 5

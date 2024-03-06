@@ -1,6 +1,7 @@
 extends CharacterBody2D
+class_name Player
 
-@onready var abilities_node := $Abilities
+@onready var abilities_node := $AbilityControllers
 @onready var animation_player := $AnimationPlayer
 @onready var health_component := $HealthComponent
 @onready var sprite_parent := $BodySpriteParent
@@ -21,6 +22,7 @@ func _ready():
     health_component.health_changed.connect(on_health_changed)
     health_component.died.connect(on_died)
     GameEvents.player_upgraded_ability.connect(on_player_upgraded_ability)
+    GameEvents.event_health_collected.connect(health_component.heal)
     
     base_speed = velocity_component.max_speed
     health_bar.value = health_component.health_percent

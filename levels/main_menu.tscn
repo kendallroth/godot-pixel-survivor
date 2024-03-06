@@ -37,11 +37,13 @@ layout_mode = 2
 
 [node name="QuitButton" parent="Background/MarginContainer/HBoxContainer" instance=ExtResource("2_8phxx")]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-theme_override_constants/icon_max_width = 48
+theme_override_constants/icon_max_width = 30
 theme_override_font_sizes/font_size = 32
 text = ""
 icon = ExtResource("3_wyvpi")
+icon_alignment = 1
 
 [node name="Spacer" type="Control" parent="Background/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -60,8 +62,11 @@ size_flags_horizontal = 3
 
 [node name="OptionsButton" parent="Background/MarginContainer/HBoxContainer" instance=ExtResource("2_8phxx")]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-theme_override_constants/icon_max_width = 48
+theme_override_constants/icon_max_width = 30
 theme_override_font_sizes/font_size = 32
+disabled = true
 text = ""
 icon = ExtResource("4_2s2sr")
+icon_alignment = 1

@@ -129,24 +129,23 @@ sprite_parent = NodePath("../BodySpriteParent")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_q5i45")]
 
-[node name="Abilities" type="Node" parent="."]
+[node name="PickupAreaComponent" type="Area2D" parent="."]
+position = Vector2(0, -7)
+collision_layer = 16
+collision_mask = 4
 
-[node name="SwordAbilityController" parent="Abilities" instance=ExtResource("2_g3if1")]
+[node name="PickupCollider" type="CollisionShape2D" parent="PickupAreaComponent"]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_me0v8")
+
+[node name="AbilityControllers" type="Node" parent="."]
+
+[node name="SwordAbilityController" parent="AbilityControllers" instance=ExtResource("2_g3if1")]
 max_range = 125
 
 [node name="DamageTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
-
-[node name="ExperiencePickupArea" type="Area2D" parent="."]
-visible = false
-position = Vector2(0, -7)
-collision_layer = 16
-collision_mask = 4
-
-[node name="ExperiencePickupCollider" type="CollisionShape2D" parent="ExperiencePickupArea"]
-unique_name_in_owner = true
-shape = SubResource("CircleShape2D_me0v8")
 
 [node name="HurtboxArea" type="Area2D" parent="."]
 position = Vector2(0, -7)

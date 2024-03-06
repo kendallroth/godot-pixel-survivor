@@ -17,4 +17,5 @@ signal level_difficulty_changed(level: int)
 
 # Event signals (likely not final handler/emitter)
 signal event_experience_collected(value: float)
+signal event_health_collected(value: float)
 

@@ -10,7 +10,7 @@ func on_options_clicked():
     pass
 
 func on_play_clicked():
-    get_tree().change_scene_to_file("res://levels/main_scene.tscn")
+    get_tree().change_scene_to_file("res://levels/game_scene.tscn")
 
 func on_quit_clicked():
     get_tree().quit()

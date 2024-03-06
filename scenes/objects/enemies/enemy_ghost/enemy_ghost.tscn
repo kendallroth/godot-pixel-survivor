@@ -1,13 +1,16 @@
-[gd_scene load_steps=21 format=3 uid="uid://btag0253s7hhs"]
+[gd_scene load_steps=26 format=3 uid="uid://btag0253s7hhs"]
 
 [ext_resource type="PackedScene" uid="uid://yw5tcqcppqoe" path="res://scenes/components/health_component.tscn" id="1_0t1x8"]
 [ext_resource type="Texture2D" uid="uid://b4vptrsau8q2x" path="res://scenes/objects/enemies/enemy_ghost/enemy_ghost.png" id="1_ajswv"]
 [ext_resource type="Script" path="res://scenes/objects/enemies/enemy_ghost/enemy_ghost.gd" id="1_vrrot"]
 [ext_resource type="PackedScene" uid="uid://dc8282q2n8jsw" path="res://scenes/components/death_component.tscn" id="2_rgcbp"]
 [ext_resource type="PackedScene" uid="uid://df5x061wohblu" path="res://scenes/components/velocity_component.tscn" id="3_hl1u7"]
+[ext_resource type="PackedScene" uid="uid://dchcwyt2xyoe3" path="res://scenes/components/enemy_drop_component.tscn" id="3_n351g"]
 [ext_resource type="PackedScene" uid="uid://c0g8ng8v0ax3e" path="res://scenes/components/hurtbox_component.tscn" id="3_qyedp"]
-[ext_resource type="PackedScene" uid="uid://06tj2arwgirk" path="res://scenes/components/vial_drop_component.tscn" id="4_6yq27"]
+[ext_resource type="PackedScene" uid="uid://ue4eajljk6rf" path="res://scenes/objects/pickups/experience_pickup/experience_pickup.tscn" id="4_qtp05"]
+[ext_resource type="Script" path="res://resources/pickups/enemy_drop_item.gd" id="5_5foyw"]
 [ext_resource type="PackedScene" uid="uid://c455ngw6uqq7v" path="res://scenes/components/hit_flash_component.tscn" id="6_ccajx"]
+[ext_resource type="PackedScene" uid="uid://bb0rtcaqxk07u" path="res://scenes/objects/pickups/health_pickup/health_pickup.tscn" id="6_khsqo"]
 [ext_resource type="Shader" path="res://scenes/components/hit_flash_component.gdshader" id="7_pqba4"]
 [ext_resource type="AudioStream" uid="uid://dk6dqwald2ey2" path="res://assets/audio/effects/enemy_hit/footstep_carpet_001.ogg" id="9_culm3"]
 [ext_resource type="AudioStream" uid="uid://bh00fvtpctc4s" path="res://assets/audio/effects/enemy_hit/footstep_carpet_000.ogg" id="9_jrwwp"]
@@ -96,6 +99,18 @@ _data = {
 "walk": SubResource("Animation_tqewg")
 }
 
+[sub_resource type="Resource" id="Resource_5xcwe"]
+script = ExtResource("5_5foyw")
+item_scene = ExtResource("4_qtp05")
+drop_amount = 2
+weight = 10
+
+[sub_resource type="Resource" id="Resource_bymkh"]
+script = ExtResource("5_5foyw")
+item_scene = ExtResource("6_khsqo")
+drop_amount = 1
+weight = 1
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bx362"]
 resource_local_to_scene = true
 shader = ExtResource("7_pqba4")
@@ -121,9 +136,9 @@ autoplay = "walk"
 [node name="HealthComponent" parent="." instance=ExtResource("1_0t1x8")]
 max_health = 25.0
 
-[node name="VialDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_6yq27")]
-drop_chance = 0.5
-drop_amount = 2
+[node name="EnemyDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_n351g")]
+item_table = Array[ExtResource("5_5foyw")]([SubResource("Resource_5xcwe"), SubResource("Resource_bymkh")])
+drop_chance = 0.45
 health_component = NodePath("../HealthComponent")
 
 [node name="VelocityComponent" parent="." node_paths=PackedStringArray("sprite_parent") instance=ExtResource("3_hl1u7")]

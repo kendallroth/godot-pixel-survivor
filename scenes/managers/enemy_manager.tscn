@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://bniv67hs3xwy3"]
+[gd_scene load_steps=4 format=3 uid="uid://bniv67hs3xwy3"]
 
 [ext_resource type="Script" path="res://scenes/managers/enemy_manager.gd" id="1_wdvgm"]
 [ext_resource type="PackedScene" uid="uid://btag0253s7hhs" path="res://scenes/objects/enemies/enemy_ghost/enemy_ghost.tscn" id="2_d2xkl"]
+[ext_resource type="PackedScene" uid="uid://ck57qfpbatoqq" path="res://scenes/objects/enemies/enemy_basic/enemy_basic.tscn" id="2_uvd85"]
 
 [node name="EnemyManager" type="Node"]
 script = ExtResource("1_wdvgm")
-basic_enemy_scene = ExtResource("2_d2xkl")
+basic_enemy_scene = ExtResource("2_uvd85")
+ghost_enemy_scene = ExtResource("2_d2xkl")
 
 [node name="SpawnTimer" type="Timer" parent="."]
 one_shot = true

@@ -15,9 +15,16 @@ func _ready():
     level_manager.level_time_changed.connect(on_level_time_updated)
     level_manager.level_difficulty_changed.connect(on_level_difficulty_updated)
     
-    level_label.text = "1"
-    experience_label.text = ""
-    experience_bar.value = 0
+    level_label.text = str(experience_manager.current_level)
+    experience_label.text = format_experience_label(
+        experience_manager.current_experience,
+        experience_manager.target_experience
+    )
+    experience_bar.value = experience_manager.current_experience
+
+
+func format_experience_label(current: float, target: float):
+    return "%s / %s" % [current, target]
 
 
 func on_leveled_up(level: int):
@@ -26,8 +33,8 @@ func on_leveled_up(level: int):
 
 func on_experience_updated(current_experience, target_experience):
     experience_bar.value = current_experience / target_experience
-    experience_label.text = "%s / %s" % [current_experience, target_experience]
-    
+    experience_label.text = format_experience_label(current_experience, target_experience)
+
 
 func on_level_time_updated(seconds: int):
     var minutes = seconds / 60
