@@ -69,7 +69,7 @@ func on_main_menu_button_pressed():
 
 
 func on_options_button_pressed():
-    var options_menu_instance: OptionsMenu = GameScreens.add_scene(GameScreens.OPTIONS_MENU_SCENE_REF, self)
+    var options_menu_instance: OptionsMenu = await GameScreens.add_scene(GameScreens.OPTIONS_MENU_SCENE_REF, self, true)
     options_menu_instance.back_pressed.connect(on_options_menu_back_pressed.bind(options_menu_instance))
 
 

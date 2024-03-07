@@ -12,7 +12,6 @@
 - Refactor menu background to a re-usable scene
 - Investigate automatically detecting required child Nodes (like Unity's) `GetComponentInChildren`
 - Determine how to link between ability upgrades descriptions and actual behaviour (ie. 10% speed increase is hardcoded)
-- Improve menu transitions to avoid popping and button audio cutoff
 
 ## Bugs
 

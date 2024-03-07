@@ -21,7 +21,7 @@ config/icon="res://icon.png"
 
 GameEvents="*res://scenes/autoload/game_events.tscn"
 MusicAudioPlayer="*res://scenes/autoload/music_audio_player.tscn"
-GameScreens="*res://scenes/autoload/game_screens.gd"
+GameScreens="*res://scenes/autoload/game_screens.tscn"
 
 [debug]
 

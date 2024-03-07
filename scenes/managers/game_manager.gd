@@ -46,7 +46,7 @@ func pause_game():
 
 func show_game_over(win: bool):
     level_timer.paused = true
-    var game_over_menu_instance: GameOverScreen = GameScreens.add_scene(GameScreens.GAME_OVER_SCENE_REF, self)
+    var game_over_menu_instance: GameOverScreen = await GameScreens.add_scene(GameScreens.GAME_OVER_SCENE_REF, self)
 
     if (win):
         game_over_menu_instance.show_victory()

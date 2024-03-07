@@ -8,10 +8,10 @@ func _ready():
 
 
 func on_options_pressed():
+    var options_menu_instance = await GameScreens.add_scene(GameScreens.OPTIONS_MENU_SCENE_REF, self, true)
+    options_menu_instance.back_pressed.connect(on_options_closed.bind(options_menu_instance))
     # Apparently must hide "Main Menu" to allow "Options Menu" to display (layering issue?)
     visible = false
-    var options_menu_instance = GameScreens.add_scene(GameScreens.OPTIONS_MENU_SCENE_REF, self)
-    options_menu_instance.back_pressed.connect(on_options_closed.bind(options_menu_instance))
 
 
 func on_options_closed(options_instance: Node):
@@ -24,4 +24,4 @@ func on_play_pressed():
 
 
 func on_quit_pressed():
-    GameScreens.quit()
+    GameScreens.quit_game()

@@ -38,7 +38,9 @@ func set_audio_bus_volume_percent(bus_name: String, percent: float):
 
 
 func on_back_button_pressed():
-    # TODO: Wait to close until button sound has played?
+    GameScreens.transition()
+    await GameScreens.transition_filled
+
     back_pressed.emit()
 
 
