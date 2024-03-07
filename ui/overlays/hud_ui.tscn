@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bpgiibe3coqhx"]
 
-[ext_resource type="Script" path="res://scenes/ui/level_ui.gd" id="1_pii4w"]
+[ext_resource type="Script" path="res://ui/overlays/hud_ui.gd" id="1_pii4w"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tm7wb"]
 bg_color = Color(0.458824, 0.890196, 1, 1)
@@ -10,7 +10,7 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.8, 0.8, 0.8, 0)
 
-[node name="LevelUI" type="CanvasLayer"]
+[node name="HudUI" type="CanvasLayer"]
 script = ExtResource("1_pii4w")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]

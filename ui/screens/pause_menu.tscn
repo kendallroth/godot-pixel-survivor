@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://5bwfhswksx55"]
 
-[ext_resource type="Script" path="res://scenes/ui/pause_screen.gd" id="1_7wdsb"]
-[ext_resource type="PackedScene" uid="uid://8io24htcugal" path="res://scenes/ui/vignette.tscn" id="2_5buio"]
-[ext_resource type="PackedScene" uid="uid://bat0dhmgguogl" path="res://scenes/ui/sound_button.tscn" id="3_38ntc"]
+[ext_resource type="Script" path="res://ui/screens/pause_menu.gd" id="1_7i7xp"]
+[ext_resource type="PackedScene" uid="uid://8io24htcugal" path="res://ui/overlays/vignette.tscn" id="2_87c6s"]
+[ext_resource type="PackedScene" uid="uid://bat0dhmgguogl" path="res://ui/components/sound_button.tscn" id="3_jjl7r"]
 
 [sub_resource type="Animation" id="Animation_rjygu"]
 length = 0.001
@@ -43,7 +43,7 @@ _data = {
 }
 
 [node name="PauseMenu" type="CanvasLayer"]
-script = ExtResource("1_7wdsb")
+script = ExtResource("1_7i7xp")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -58,7 +58,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.254902, 0.14902, 0.196078, 0.4)
 
-[node name="Vignette" parent="." instance=ExtResource("2_5buio")]
+[node name="Vignette" parent="." instance=ExtResource("2_87c6s")]
 
 [node name="ContentContainer" type="PanelContainer" parent="."]
 unique_name_in_owner = true
@@ -97,17 +97,17 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="ResumeButton" parent="ContentContainer/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("3_38ntc")]
+[node name="ResumeButton" parent="ContentContainer/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("3_jjl7r")]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Resume"
 
-[node name="OptionsButton" parent="ContentContainer/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("3_38ntc")]
+[node name="OptionsButton" parent="ContentContainer/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("3_jjl7r")]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Options"
 
-[node name="MainMenuButton" parent="ContentContainer/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("3_38ntc")]
+[node name="MainMenuButton" parent="ContentContainer/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("3_jjl7r")]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Main Menu"

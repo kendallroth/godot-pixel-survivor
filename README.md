@@ -12,7 +12,7 @@
 - Refactor menu background to a re-usable scene
 - Investigate automatically detecting required child Nodes (like Unity's) `GetComponentInChildren`
 - Determine how to link between ability upgrades descriptions and actual behaviour (ie. 10% speed increase is hardcoded)
-- Standardize screen/menu naming
+- Consider allowing rerolling upgrades at cost of player health?
 
 ## Bugs
 

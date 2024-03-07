@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://8io24htcugal"]
 
-[ext_resource type="Shader" path="res://scenes/ui/vignette.gdshader" id="1_dr5h6"]
-[ext_resource type="Script" path="res://scenes/ui/vignette.gd" id="1_x8uec"]
+[ext_resource type="Shader" path="res://ui/overlays/vignette.gdshader" id="1_dr5h6"]
+[ext_resource type="Script" path="res://ui/overlays/vignette.gd" id="1_x8uec"]
 
 [sub_resource type="Animation" id="Animation_qd32v"]
 length = 0.001

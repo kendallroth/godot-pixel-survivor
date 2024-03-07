@@ -1,5 +1,5 @@
 extends CanvasLayer
-class_name PauseScreen
+class_name PauseMenu
 
 @onready var animation_player = $AnimationPlayer
 @onready var content_container = $ContentContainer

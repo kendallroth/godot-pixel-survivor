@@ -6,7 +6,7 @@ class_name HurtboxComponent
 
 @onready var audio_player := $RandomAudioPlayerComponent
 
-var floating_text_scene = preload("res://scenes/ui/floating_text.tscn")
+var floating_text_scene = preload("res://ui/components/floating_text.tscn")
 
 
 func _ready():

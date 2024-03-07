@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://bn80n7nmv22x6"]
 
-[ext_resource type="Script" path="res://scenes/ui/game_over_screen.gd" id="1_3g62x"]
+[ext_resource type="Script" path="res://ui/screens/game_over_screen.gd" id="1_3g62x"]
 [ext_resource type="AudioStream" uid="uid://doggj0m6qgojt" path="res://assets/audio/music/victory_jingle.ogg" id="2_ub25q"]
-[ext_resource type="PackedScene" uid="uid://bat0dhmgguogl" path="res://scenes/ui/sound_button.tscn" id="2_won0t"]
+[ext_resource type="PackedScene" uid="uid://bat0dhmgguogl" path="res://ui/components/sound_button.tscn" id="2_won0t"]
 [ext_resource type="AudioStream" uid="uid://cm0rwwwn3ixaq" path="res://assets/audio/music/defeat_jingle.ogg" id="3_l0io1"]
 
 [sub_resource type="Animation" id="Animation_bkheg"]

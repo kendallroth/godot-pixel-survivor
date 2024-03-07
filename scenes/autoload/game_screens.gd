@@ -5,11 +5,11 @@ extends Node
 ## Transition has fully covered screen (other scenes can be loaded)
 signal transition_filled()
 
-const GAME_OVER_SCENE_PATH = "res://scenes/ui/game_over_screen.tscn"
-const GAME_SCENE_PATH = "res://levels/game_scene.tscn"
-const MAIN_MENU_SCENE_PATH = "res://levels/main_menu.tscn"
-const OPTIONS_MENU_SCENE_PATH = "res://levels/options_menu.tscn"
-const PAUSE_MENU_SCENE_PATH = "res://scenes/ui/pause_screen.tscn"
+const GAME_OVER_SCENE_PATH = "res://ui/screens/game_over_screen.tscn"
+const GAME_SCENE_PATH = "res://scenes/levels/game_scene.tscn"
+const MAIN_MENU_SCENE_PATH = "res://ui/screens/main_menu_screen.tscn"
+const OPTIONS_MENU_SCENE_PATH = "res://ui/screens/options_menu.tscn"
+const PAUSE_MENU_SCENE_PATH = "res://ui/screens/pause_menu.tscn"
 
 const GAME_OVER_SCENE_REF = preload(GAME_OVER_SCENE_PATH)
 const OPTIONS_MENU_SCENE_REF = preload(OPTIONS_MENU_SCENE_PATH)

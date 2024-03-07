@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://mha61b01kor0"]
 
 [ext_resource type="Script" path="res://scenes/managers/game_manager.gd" id="1_pnb2e"]
-[ext_resource type="PackedScene" uid="uid://bn80n7nmv22x6" path="res://scenes/ui/game_over_screen.tscn" id="2_iki30"]
-[ext_resource type="PackedScene" uid="uid://5bwfhswksx55" path="res://scenes/ui/pause_screen.tscn" id="3_t3j05"]
+[ext_resource type="PackedScene" uid="uid://bn80n7nmv22x6" path="res://ui/screens/game_over_screen.tscn" id="2_iki30"]
+[ext_resource type="PackedScene" uid="uid://5bwfhswksx55" path="res://ui/screens/pause_menu.tscn" id="3_t3j05"]
 
 [node name="GameManager" type="Node"]
 script = ExtResource("1_pnb2e")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cvgl1twpp0pg3"]
 
-[ext_resource type="Script" path="res://scenes/ui/debug_overlay.gd" id="1_5snrc"]
+[ext_resource type="Script" path="res://ui/overlays/debug_overlay.gd" id="1_5snrc"]
 [ext_resource type="StyleBox" uid="uid://cre0yxncpljyo" path="res://themes/styles/overlay_panel.tres" id="2_uw1p5"]
 
 [node name="DebugOverlay" type="CanvasLayer"]

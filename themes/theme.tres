@@ -1,7 +1,7 @@
 [gd_resource type="Theme" load_steps=17 format=3 uid="uid://cfe5lfhmvfrf8"]
 
 [ext_resource type="FontFile" uid="uid://l0kbity3kjax" path="res://assets/fonts/Rockboxcond12.ttf" id="1_gu6vl"]
-[ext_resource type="Texture2D" uid="uid://dgvl44cbdt7kk" path="res://assets/ui/ui.png" id="1_rq5ho"]
+[ext_resource type="Texture2D" uid="uid://dgvl44cbdt7kk" path="res://assets/ui/ui_elements.png" id="1_rq5ho"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pb6c7"]
 texture = ExtResource("1_rq5ho")

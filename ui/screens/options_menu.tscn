@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://dnetkslyvrp6i"]
 
-[ext_resource type="PackedScene" uid="uid://bat0dhmgguogl" path="res://scenes/ui/sound_button.tscn" id="1_7ixse"]
-[ext_resource type="Script" path="res://levels/options_menu.gd" id="1_ohj5g"]
+[ext_resource type="PackedScene" uid="uid://bat0dhmgguogl" path="res://ui/components/sound_button.tscn" id="1_7ixse"]
+[ext_resource type="Script" path="res://ui/screens/options_menu.gd" id="1_ohj5g"]
 [ext_resource type="Texture2D" uid="uid://benyfbl7qaij6" path="res://assets/ui/menu_background.png" id="2_7fdpv"]
-[ext_resource type="PackedScene" uid="uid://8io24htcugal" path="res://scenes/ui/vignette.tscn" id="2_qbs4c"]
+[ext_resource type="PackedScene" uid="uid://8io24htcugal" path="res://ui/overlays/vignette.tscn" id="2_qbs4c"]
 
 [node name="OptionsMenu" type="CanvasLayer"]
 script = ExtResource("1_ohj5g")
