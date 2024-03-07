@@ -29,7 +29,9 @@ func increment_experience(value: float):
     current_experience = min(potential_current_experience, target_experience)
 
     experience_updated.emit(current_experience, target_experience)
-    GameEvents.player_experience_changed.emit(current_experience, target_experience, total_experience)
+    GameEvents.player_experience_changed.emit(
+        current_experience, current_experience_percent, value, total_experience
+    )
     
     if potential_current_experience >= target_experience:
         increment_level(potential_current_experience - target_experience)
@@ -42,7 +44,9 @@ func increment_level(carry_over := 0):
     current_experience = min(carry_over, target_experience - 1)
 
     experience_updated.emit(current_experience, target_experience)
-    GameEvents.player_experience_changed.emit(current_experience, target_experience, total_experience)
+    GameEvents.player_experience_changed.emit(
+        current_experience, current_experience_percent, current_experience, total_experience
+    )
     leveled_up.emit(current_level)
     GameEvents.player_level_changed.emit(current_level)
 

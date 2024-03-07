@@ -69,8 +69,10 @@ func on_enemy_count_changed(current_count: int, total_count: int):
 func on_level_difficulty_changed(difficulty: int):
     set_item_string("difficulty", "Difficulty", "%s" % difficulty)
 
-func on_player_experience_changed(current_experience: int, target_experience: int, total_experience: int):
-    set_item_string("xp", "XP", "%s / %s" % [current_experience, target_experience])
+func on_player_experience_changed(
+    current_level_experience: int, current_experience_progress: float, change: int, total_experience: int
+):
+    set_item_string("xp", "XP", "%s / %s" % [current_level_experience, current_level_experience * (1 / current_experience_progress)])
     set_item_string("xp_total", "XP (All)", "%s" % total_experience)
 
 

@@ -5,6 +5,7 @@ extends CanvasLayer
 @onready var level_label = $%LevelLabel
 @onready var time_label = $%TimeLabel
 
+# TODO: Consider listening via game events instead (being sent anyway...)
 @export var experience_manager: ExperienceManager
 @export var level_manager: GameManager
 
@@ -13,7 +14,6 @@ func _ready():
     experience_manager.experience_updated.connect(on_experience_updated)
     experience_manager.leveled_up.connect(on_leveled_up)
     level_manager.level_time_changed.connect(on_level_time_updated)
-    level_manager.level_difficulty_changed.connect(on_level_difficulty_updated)
     
     level_label.text = str(experience_manager.current_level)
     experience_label.text = format_experience_label(
@@ -41,8 +41,3 @@ func on_level_time_updated(seconds: int):
     var remaining_seconds = floori(seconds - (minutes * 60))
     var time_string = "%s:%02d" % [minutes, remaining_seconds]
     time_label.text = time_string
-
-
-func on_level_difficulty_updated(difficulty: int):
-    print("Level difficulty increased [%s]" % difficulty)
-    pass
