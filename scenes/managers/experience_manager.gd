@@ -19,7 +19,7 @@ var current_experience_percent:
 
 
 func _ready():
-    GameEvents.event_experience_collected.connect(increment_experience)
+    GameEvents.player_collected_pickup.connect(on_player_collected_pickup)
 
 
 func increment_experience(value: float):
@@ -45,3 +45,10 @@ func increment_level(carry_over := 0):
     GameEvents.player_experience_changed.emit(current_experience, target_experience, total_experience)
     leveled_up.emit(current_level)
     GameEvents.player_level_changed.emit(current_level)
+
+
+func on_player_collected_pickup(pickup: PickupItem):
+    if pickup.pickup_type != GameEnums.PickupItemType.EXPERIENCE:
+        return
+
+    increment_experience(pickup.pickup_amount)

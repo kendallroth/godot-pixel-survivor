@@ -1,27 +1,31 @@
 [gd_scene load_steps=7 format=3 uid="uid://bb0rtcaqxk07u"]
 
-[ext_resource type="Script" path="res://scenes/objects/pickups/health_pickup/health_pickup.gd" id="1_qf4s4"]
-[ext_resource type="PackedScene" uid="uid://dpef5s2ea470p" path="res://scenes/components/pickup_item_component.tscn" id="2_svw1s"]
+[ext_resource type="Script" path="res://scenes/objects/pickups/pickup_item.gd" id="1_su75b"]
+[ext_resource type="PackedScene" uid="uid://cefsg5yb2fms8" path="res://scenes/components/random_audio_player_2d_component.tscn" id="2_jt6wk"]
+[ext_resource type="AudioStream" uid="uid://d3qpq1h0xd0ru" path="res://assets/audio/effects/pickups/health_pickup/impactSoft_heavy_000.ogg" id="3_ci7wa"]
+[ext_resource type="AudioStream" uid="uid://c8u1gecwurnj8" path="res://assets/audio/effects/pickups/health_pickup/impactSoft_heavy_001.ogg" id="4_vwikk"]
 [ext_resource type="Texture2D" uid="uid://dc53wrjv02jm4" path="res://scenes/objects/pickups/health_pickup/health_vial.png" id="8_ikmwa"]
-[ext_resource type="AudioStream" uid="uid://d3qpq1h0xd0ru" path="res://assets/audio/effects/health_pickup/impactSoft_heavy_000.ogg" id="8_qbsln"]
-[ext_resource type="AudioStream" uid="uid://c8u1gecwurnj8" path="res://assets/audio/effects/health_pickup/impactSoft_heavy_001.ogg" id="9_7eb23"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dealh"]
 
-[node name="HealthPickup" type="Node2D"]
-script = ExtResource("1_qf4s4")
+[node name="HealthPickup" type="Node2D" node_paths=PackedStringArray("audio_player", "collision_area", "collision_shape", "pickup_sprite")]
+script = ExtResource("1_su75b")
+pickup_type = 1
+audio_player = NodePath("PickupAudioPlayerComponent")
+collision_area = NodePath("PickupArea")
+collision_shape = NodePath("PickupArea/PickupCollisionShape")
+pickup_sprite = NodePath("HealthSprite")
 
-[node name="PickupItemComponent" parent="." node_paths=PackedStringArray("collision_area", "collision_shape", "pickup_sprite") instance=ExtResource("2_svw1s")]
-audio_streams = Array[AudioStream]([ExtResource("8_qbsln"), ExtResource("9_7eb23")])
-collision_area = NodePath("../PickupArea")
-collision_shape = NodePath("../PickupArea/PickupCollider")
-pickup_sprite = NodePath("../HealthSprite")
+[node name="PickupAudioPlayerComponent" parent="." instance=ExtResource("2_jt6wk")]
+process_mode = 3
+volume_db = -3.0
+audio_streams = Array[AudioStream]([ExtResource("3_ci7wa"), ExtResource("4_vwikk")])
 
 [node name="PickupArea" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 16
 
-[node name="PickupCollider" type="CollisionShape2D" parent="PickupArea"]
+[node name="PickupCollisionShape" type="CollisionShape2D" parent="PickupArea"]
 unique_name_in_owner = true
 shape = SubResource("CircleShape2D_dealh")
 

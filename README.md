@@ -7,3 +7,18 @@
 - Change ability upgrade to use weighting (and min-level)
 - Change enemy manager to use enemy weighting via configurable component (vs `WeightedTable`)
   - Consider using `Resources` for enemy type configuration (vs inline resources)
+- Implement debug/testing system (console?)
+  - Add XP, add level, drop pickup, etc
+- Refactor menu background to a re-usable scene
+- Investigate automatically detecting required child Nodes (like Unity's) `GetComponentInChildren`
+- Determine how to link between ability upgrades descriptions and actual behaviour (ie. 10% speed increase is hardcoded)
+
+## Bugs
+
+- Enemies occasionally get stuck in top wall (likely due to spawn?)
+
+## Caveats
+
+### Pickup System
+
+Currently the pickup system is "handled" by the pickup items themselves detecting collisions with player, rather than player having a pickup system component. This feels a bit odd, but perhaps is the easiest way of supporting the pickup/tweening logic 🤷. The system has been drastically improved from the series (no need for individual classes), although it does use a global enum for determining upgrade type (for string safety).

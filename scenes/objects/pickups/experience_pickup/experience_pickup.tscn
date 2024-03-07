@@ -1,30 +1,34 @@
 [gd_scene load_steps=10 format=3 uid="uid://ue4eajljk6rf"]
 
-[ext_resource type="Script" path="res://scenes/objects/pickups/experience_pickup/experience_pickup.gd" id="1_sths2"]
-[ext_resource type="PackedScene" uid="uid://dpef5s2ea470p" path="res://scenes/components/pickup_item_component.tscn" id="2_3fsim"]
-[ext_resource type="AudioStream" uid="uid://bpcelbvejus7i" path="res://assets/audio/effects/vial_pickup/impactGeneric_light_000.ogg" id="4_86kt2"]
-[ext_resource type="AudioStream" uid="uid://cutcgfcmvep4s" path="res://assets/audio/effects/vial_pickup/impactGeneric_light_001.ogg" id="5_hr1rh"]
-[ext_resource type="AudioStream" uid="uid://bp6ivy5s2162r" path="res://assets/audio/effects/vial_pickup/impactGeneric_light_002.ogg" id="6_pxbbw"]
-[ext_resource type="AudioStream" uid="uid://hr77jby2ymjk" path="res://assets/audio/effects/vial_pickup/impactGeneric_light_003.ogg" id="7_ah7yt"]
-[ext_resource type="AudioStream" uid="uid://b285oueue0l0d" path="res://assets/audio/effects/vial_pickup/impactGeneric_light_004.ogg" id="8_rduyj"]
+[ext_resource type="Script" path="res://scenes/objects/pickups/pickup_item.gd" id="1_22h5l"]
+[ext_resource type="PackedScene" uid="uid://cefsg5yb2fms8" path="res://scenes/components/random_audio_player_2d_component.tscn" id="2_uf3es"]
+[ext_resource type="AudioStream" uid="uid://bpcelbvejus7i" path="res://assets/audio/effects/pickups/experience_pickup/impactGeneric_light_000.ogg" id="3_g14ow"]
+[ext_resource type="AudioStream" uid="uid://cutcgfcmvep4s" path="res://assets/audio/effects/pickups/experience_pickup/impactGeneric_light_001.ogg" id="4_3pl13"]
+[ext_resource type="AudioStream" uid="uid://bp6ivy5s2162r" path="res://assets/audio/effects/pickups/experience_pickup/impactGeneric_light_002.ogg" id="5_wfspb"]
+[ext_resource type="AudioStream" uid="uid://hr77jby2ymjk" path="res://assets/audio/effects/pickups/experience_pickup/impactGeneric_light_003.ogg" id="6_ml7gw"]
+[ext_resource type="AudioStream" uid="uid://b285oueue0l0d" path="res://assets/audio/effects/pickups/experience_pickup/impactGeneric_light_004.ogg" id="7_q6kof"]
 [ext_resource type="Texture2D" uid="uid://wnmdmt3p0nni" path="res://scenes/objects/pickups/experience_pickup/experience_vial.png" id="9_grado"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dealh"]
 
-[node name="ExperiencePickup" type="Node2D"]
-script = ExtResource("1_sths2")
+[node name="ExperiencePickup" type="Node2D" node_paths=PackedStringArray("audio_player", "collision_area", "collision_shape", "pickup_sprite")]
+script = ExtResource("1_22h5l")
+pickup_type = 2
+audio_player = NodePath("PickupAudioPlayerComponent")
+collision_area = NodePath("PickupArea")
+collision_shape = NodePath("PickupArea/PickupCollisionShape")
+pickup_sprite = NodePath("ExperienceSprite")
 
-[node name="PickupItemComponent" parent="." node_paths=PackedStringArray("collision_area", "collision_shape", "pickup_sprite") instance=ExtResource("2_3fsim")]
-audio_streams = Array[AudioStream]([ExtResource("4_86kt2"), ExtResource("5_hr1rh"), ExtResource("6_pxbbw"), ExtResource("7_ah7yt"), ExtResource("8_rduyj")])
-collision_area = NodePath("../PickupArea")
-collision_shape = NodePath("../PickupArea/PickupCollider")
-pickup_sprite = NodePath("../ExperienceSprite")
+[node name="PickupAudioPlayerComponent" parent="." instance=ExtResource("2_uf3es")]
+process_mode = 3
+volume_db = -3.0
+audio_streams = Array[AudioStream]([ExtResource("3_g14ow"), ExtResource("4_3pl13"), ExtResource("5_wfspb"), ExtResource("6_ml7gw"), ExtResource("7_q6kof")])
 
 [node name="PickupArea" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 16
 
-[node name="PickupCollider" type="CollisionShape2D" parent="PickupArea"]
+[node name="PickupCollisionShape" type="CollisionShape2D" parent="PickupArea"]
 unique_name_in_owner = true
 shape = SubResource("CircleShape2D_dealh")
 

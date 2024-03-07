@@ -22,7 +22,7 @@ func _ready():
     health_component.health_changed.connect(on_health_changed)
     health_component.died.connect(on_died)
     GameEvents.player_upgraded_ability.connect(on_player_upgraded_ability)
-    GameEvents.event_health_collected.connect(health_component.heal)
+    GameEvents.player_collected_pickup.connect(on_player_collected_pickup)
     
     base_speed = velocity_component.max_speed
     health_bar.value = health_component.health_percent
@@ -68,6 +68,13 @@ func on_body_exited(other_body: Node2D):
 
 func on_damage_timer_timeout():
     check_deal_damage()
+
+
+func on_player_collected_pickup(pickup: PickupItem):
+    if pickup.pickup_type != GameEnums.PickupItemType.HEALTH:
+        return
+    
+    health_component.heal(pickup.pickup_amount)
 
 
 func on_health_changed(change: float, value: float, percent: float):

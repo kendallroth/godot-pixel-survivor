@@ -6,3 +6,4 @@
 max_distance = 300.0
 bus = &"sfx"
 script = ExtResource("1_oadal")
+min_pitch = 0.95
