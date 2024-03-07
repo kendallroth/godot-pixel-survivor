@@ -5,7 +5,7 @@ class_name EnemyManager
 const SPAWN_RADIUS = 370
 
 @export_group("References")
-@export var level_manager: LevelManager
+@export var level_manager: GameManager
 @export var basic_enemy_scene: PackedScene
 @export var ghost_enemy_scene: PackedScene
 

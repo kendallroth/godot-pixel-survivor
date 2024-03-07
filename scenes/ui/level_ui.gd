@@ -6,7 +6,7 @@ extends CanvasLayer
 @onready var time_label = $%TimeLabel
 
 @export var experience_manager: ExperienceManager
-@export var level_manager: LevelManager
+@export var level_manager: GameManager
 
 
 func _ready():

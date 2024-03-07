@@ -1,5 +1,5 @@
 extends Node
-class_name LevelManager
+class_name GameManager
 
 signal level_time_changed(seconds: int)
 signal level_difficulty_changed(difficulty: int)
@@ -9,8 +9,6 @@ const DIFFICULTY_INTERVAL = 5
 
 ## Game length
 @export_range(0, 120) var level_time_total = 60
-@export var game_over_screen_scene: PackedScene
-@export var pause_screen_scene: PackedScene
 
 @onready var level_timer = $LevelTimer
 
@@ -27,33 +25,33 @@ func _ready():
     GameEvents.player_died.connect(on_player_died)
     level_timer.timeout.connect(on_timer_tick)
 
-    set_process_input(true)
+    # set_process_input(true)
     # NOTE: Must wait to emit event until next frame (to allow listeners to attach)
     Callable(func(): level_time_changed.emit(level_time_total)).call_deferred()
 
 
-func _input(event):
+func _unhandled_input(event):
     if event.is_action_pressed("menu_back"):
         pause_game()
+        # Let Godot know that event has been handled
+        get_tree().root.set_input_as_handled()
 
 
 func pause_game():
     if get_tree().paused:
         return
     
-    var pause_screen_instance = pause_screen_scene.instantiate() as PauseScreen
-    add_child(pause_screen_instance)
+    GameScreens.add_scene(GameScreens.PAUSE_MENU_SCENE_REF, self)
 
 
 func show_game_over(win: bool):
     level_timer.paused = true
-    var game_over_screen_instance = game_over_screen_scene.instantiate() as GameOverScreen
-    add_child(game_over_screen_instance)
+    var game_over_menu_instance: GameOverScreen = GameScreens.add_scene(GameScreens.GAME_OVER_SCENE_REF, self)
 
     if (win):
-        game_over_screen_instance.show_victory()
+        game_over_menu_instance.show_victory()
     else:
-        game_over_screen_instance.show_defeat()
+        game_over_menu_instance.show_defeat()
 
 
 func on_timer_tick():

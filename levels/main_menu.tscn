@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bbemaqtw7o1bv"]
+[gd_scene load_steps=7 format=3 uid="uid://bbemaqtw7o1bv"]
 
 [ext_resource type="Script" path="res://levels/main_menu.gd" id="1_3v4d4"]
-[ext_resource type="Texture2D" uid="uid://vufxgvu4y7bw" path="res://assets/ui/splash_screen.png" id="1_ip2mw"]
+[ext_resource type="Texture2D" uid="uid://c4x8b8mkss586" path="res://assets/ui/splash_screen_light.png" id="2_4p8qf"]
 [ext_resource type="PackedScene" uid="uid://bat0dhmgguogl" path="res://scenes/ui/sound_button.tscn" id="2_8phxx"]
+[ext_resource type="PackedScene" uid="uid://8io24htcugal" path="res://scenes/ui/vignette.tscn" id="2_rw7w8"]
 [ext_resource type="Texture2D" uid="uid://djbv8arbcq6w5" path="res://assets/ui/icon_close.png" id="3_wyvpi"]
 [ext_resource type="Texture2D" uid="uid://ctsdohmp4ygsj" path="res://assets/ui/icon_settings.png" id="4_2s2sr"]
 
@@ -15,16 +16,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_ip2mw")
-expand_mode = 1
-stretch_mode = 6
+texture = ExtResource("2_4p8qf")
+expand_mode = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="Background"]
-layout_mode = 1
+[node name="Vignette" parent="." instance=ExtResource("2_rw7w8")]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -72.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/margin_left = 16
@@ -32,10 +34,10 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Background/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="QuitButton" parent="Background/MarginContainer/HBoxContainer" instance=ExtResource("2_8phxx")]
+[node name="QuitButton" parent="MarginContainer/HBoxContainer" instance=ExtResource("2_8phxx")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
@@ -45,28 +47,27 @@ text = ""
 icon = ExtResource("3_wyvpi")
 icon_alignment = 1
 
-[node name="Spacer" type="Control" parent="Background/MarginContainer/HBoxContainer"]
+[node name="Spacer" type="Control" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PlayButton" parent="Background/MarginContainer/HBoxContainer" instance=ExtResource("2_8phxx")]
+[node name="PlayButton" parent="MarginContainer/HBoxContainer" instance=ExtResource("2_8phxx")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Play"
 
-[node name="Spacer2" type="Control" parent="Background/MarginContainer/HBoxContainer"]
+[node name="Spacer2" type="Control" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="OptionsButton" parent="Background/MarginContainer/HBoxContainer" instance=ExtResource("2_8phxx")]
+[node name="OptionsButton" parent="MarginContainer/HBoxContainer" instance=ExtResource("2_8phxx")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme_override_constants/icon_max_width = 30
 theme_override_font_sizes/font_size = 32
-disabled = true
 text = ""
 icon = ExtResource("4_2s2sr")
 icon_alignment = 1

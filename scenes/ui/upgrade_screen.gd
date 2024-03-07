@@ -14,6 +14,11 @@ func _ready():
     get_tree().paused = true
 
 
+func _exit_tree():
+    # Ensure game is always unpaused when leaving "Upgrade Screen"
+    get_tree().paused = false
+
+
 func set_ability_upgrades(upgrades: Array[AbilityUpgradeUI]):
     var delay = 0
 
@@ -30,5 +35,4 @@ func on_upgrade_selected(upgrade: AbilityUpgrade):
     upgrade_selected.emit(upgrade)
     animation_player.play("out")
     await animation_player.animation_finished
-    get_tree().paused = false
     queue_free()

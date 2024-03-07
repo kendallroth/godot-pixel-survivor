@@ -116,8 +116,7 @@ theme_override_constants/separation = 8
 [node name="TitleLabel" type="Label" parent="MarginContainer/ContentContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_outline_color = Color(0.254902, 0.14902, 0.196078, 1)
-theme_override_constants/outline_size = 8
+theme_type_variation = &"OutlineLabel"
 theme_override_font_sizes/font_size = 32
 text = "Title"
 horizontal_alignment = 1
@@ -126,8 +125,7 @@ vertical_alignment = 1
 [node name="MessageLabel" type="Label" parent="MarginContainer/ContentContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_outline_color = Color(0.254902, 0.14902, 0.196078, 1)
-theme_override_constants/outline_size = 6
+theme_type_variation = &"OutlineLabel"
 text = "Message"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -141,7 +139,7 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Restart"
 
-[node name="QuitButton" parent="MarginContainer/ContentContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_won0t")]
+[node name="MainMenuButton" parent="MarginContainer/ContentContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_won0t")]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Quit"
+text = "Main Menu"

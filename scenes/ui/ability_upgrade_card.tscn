@@ -229,8 +229,7 @@ theme_override_constants/margin_bottom = 0
 [node name="NameLabel" type="Label" parent="MarginContainer/VBoxContainer/NameContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_outline_color = Color(0.254902, 0.14902, 0.196078, 1)
-theme_override_constants/outline_size = 8
+theme_type_variation = &"OutlineLabel"
 theme_override_font_sizes/font_size = 32
 text = "Name"
 horizontal_alignment = 1
@@ -240,8 +239,7 @@ autowrap_mode = 2
 [node name="DescriptionLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_outline_color = Color(0.254902, 0.14902, 0.196078, 1)
-theme_override_constants/outline_size = 6
+theme_type_variation = &"OutlineLabel"
 text = "Sample description here"
 horizontal_alignment = 1
 autowrap_mode = 2

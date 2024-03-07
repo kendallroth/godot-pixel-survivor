@@ -1,0 +1,105 @@
+[gd_scene load_steps=5 format=3 uid="uid://dnetkslyvrp6i"]
+
+[ext_resource type="PackedScene" uid="uid://bat0dhmgguogl" path="res://scenes/ui/sound_button.tscn" id="1_7ixse"]
+[ext_resource type="Script" path="res://levels/options_menu.gd" id="1_ohj5g"]
+[ext_resource type="Texture2D" uid="uid://benyfbl7qaij6" path="res://assets/ui/menu_background.png" id="2_7fdpv"]
+[ext_resource type="PackedScene" uid="uid://8io24htcugal" path="res://scenes/ui/vignette.tscn" id="2_qbs4c"]
+
+[node name="OptionsMenu" type="CanvasLayer"]
+script = ExtResource("1_ohj5g")
+
+[node name="Background" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_7fdpv")
+expand_mode = 3
+
+[node name="Vignette" parent="." instance=ExtResource("2_qbs4c")]
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(200, 200)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.5
+offset_right = 4.0
+offset_bottom = 4.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"OutlineLabel"
+theme_override_font_sizes/font_size = 32
+text = "Options"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="EffectsOptionContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/EffectsOptionContainer"]
+layout_mode = 2
+theme_type_variation = &"OutlineLabel"
+text = "Effects Volume"
+
+[node name="EffectsVolumeSlider" type="HSlider" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/EffectsOptionContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="MusicOptionContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/MusicOptionContainer"]
+layout_mode = 2
+theme_type_variation = &"OutlineLabel"
+text = "Music Volume"
+
+[node name="MusicVolumeSlider" type="HSlider" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/MusicOptionContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="WindowOptionContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/WindowOptionContainer"]
+layout_mode = 2
+theme_type_variation = &"OutlineLabel"
+text = "Window Size"
+
+[node name="WindowSizeButton" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/WindowOptionContainer" instance=ExtResource("1_7ixse")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Size"
+
+[node name="BackButton" parent="PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_7ixse")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Back"

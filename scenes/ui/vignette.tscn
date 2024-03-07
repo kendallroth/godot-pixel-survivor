@@ -96,6 +96,7 @@ shader_parameter/vignette_opacity = 0.115
 shader_parameter/vignette_rgb = Color(0.254902, 0.14902, 0.196078, 1)
 
 [node name="Vignette" type="CanvasLayer"]
+layer = 2
 script = ExtResource("1_x8uec")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
