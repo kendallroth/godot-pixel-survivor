@@ -193,7 +193,7 @@ libraries = {
 }
 
 [node name="HoverAudioPlayerComponent" parent="." instance=ExtResource("2_jdlai")]
-volume_db = -12.0
+volume_db = -32.0
 audio_streams = Array[AudioStream]([ExtResource("3_lwaxx"), ExtResource("4_uc34s"), ExtResource("5_viylf"), ExtResource("6_dn2mm"), ExtResource("7_ffkvt"), ExtResource("8_y2q0b"), ExtResource("9_iqrey"), ExtResource("10_x2tev"), ExtResource("11_lr7na"), ExtResource("12_fjton")])
 
 [node name="ClickAudioPlayerComponent2" parent="." instance=ExtResource("2_jdlai")]

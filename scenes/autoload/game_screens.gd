@@ -20,6 +20,7 @@ var skip_emit := false
 
 
 func _ready():
+    # Ensure transition screen is never affected by game pause state
     process_mode = Node.PROCESS_MODE_ALWAYS
 
 
