@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bbemaqtw7o1bv"]
+[gd_scene load_steps=8 format=3 uid="uid://bbemaqtw7o1bv"]
 
 [ext_resource type="Script" path="res://ui/screens/main_menu_screen.gd" id="1_c71uj"]
 [ext_resource type="Texture2D" uid="uid://c4x8b8mkss586" path="res://assets/ui/splash_screen_light.png" id="2_3ptam"]
 [ext_resource type="PackedScene" uid="uid://8io24htcugal" path="res://ui/overlays/vignette.tscn" id="3_h3vfo"]
+[ext_resource type="Texture2D" uid="uid://wnmdmt3p0nni" path="res://scenes/objects/pickups/experience_pickup/experience_vial.png" id="4_baf3k"]
 [ext_resource type="PackedScene" uid="uid://bat0dhmgguogl" path="res://ui/components/sound_button.tscn" id="4_sogux"]
 [ext_resource type="Texture2D" uid="uid://djbv8arbcq6w5" path="res://assets/ui/icon_close.png" id="5_btbgd"]
 [ext_resource type="Texture2D" uid="uid://ctsdohmp4ygsj" path="res://assets/ui/icon_settings.png" id="6_oc0ec"]
@@ -22,22 +23,53 @@ expand_mode = 3
 [node name="Vignette" parent="." instance=ExtResource("3_h3vfo")]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-anchors_preset = 12
-anchor_top = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -72.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="MetaContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 8
+
+[node name="MetaUpgradesButton" parent="MarginContainer/MetaContainer" instance=ExtResource("4_sogux")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = ""
+icon = ExtResource("4_baf3k")
+
+[node name="Control" type="Control" parent="MarginContainer/MetaContainer"]
 layout_mode = 2
 
-[node name="QuitButton" parent="MarginContainer/HBoxContainer" instance=ExtResource("4_sogux")]
+[node name="ExperienceLabel" type="Label" parent="MarginContainer/MetaContainer/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -6.5
+offset_right = 6.0
+offset_bottom = 8.5
+grow_vertical = 2
+size_flags_horizontal = 8
+theme_type_variation = &"OutlineLabel"
+text = "0"
+vertical_alignment = 2
+
+[node name="ActionsContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="QuitButton" parent="MarginContainer/ActionsContainer" instance=ExtResource("4_sogux")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
@@ -47,22 +79,22 @@ text = ""
 icon = ExtResource("5_btbgd")
 icon_alignment = 1
 
-[node name="Spacer" type="Control" parent="MarginContainer/HBoxContainer"]
+[node name="Spacer" type="Control" parent="MarginContainer/ActionsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PlayButton" parent="MarginContainer/HBoxContainer" instance=ExtResource("4_sogux")]
+[node name="PlayButton" parent="MarginContainer/ActionsContainer" instance=ExtResource("4_sogux")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Play"
 
-[node name="Spacer2" type="Control" parent="MarginContainer/HBoxContainer"]
+[node name="Spacer2" type="Control" parent="MarginContainer/ActionsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="OptionsButton" parent="MarginContainer/HBoxContainer" instance=ExtResource("4_sogux")]
+[node name="OptionsButton" parent="MarginContainer/ActionsContainer" instance=ExtResource("4_sogux")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2

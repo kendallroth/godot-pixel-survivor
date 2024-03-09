@@ -8,6 +8,7 @@ signal transition_filled()
 const GAME_OVER_SCENE_PATH = "res://ui/screens/game_over_screen.tscn"
 const GAME_SCENE_PATH = "res://scenes/levels/game_scene.tscn"
 const MAIN_MENU_SCENE_PATH = "res://ui/screens/main_menu_screen.tscn"
+const META_UPGRADES_SCENE_PATH = "res://ui/screens/meta_upgrades_screen.tscn"
 const OPTIONS_MENU_SCENE_PATH = "res://ui/screens/options_menu.tscn"
 const PAUSE_MENU_SCENE_PATH = "res://ui/screens/pause_menu.tscn"
 

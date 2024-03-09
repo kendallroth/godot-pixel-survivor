@@ -14,6 +14,7 @@ func _ready():
     effects_volume_slider.value_changed.connect(on_volume_slider_changed.bind("sfx"))
     music_volume_slider.value_changed.connect(on_volume_slider_changed.bind("music"))
     window_size_button.pressed.connect(on_window_button_pressed)
+
     update_display()
 
 

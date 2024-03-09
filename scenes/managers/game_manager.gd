@@ -8,7 +8,8 @@ signal level_difficulty_changed(difficulty: int)
 const DIFFICULTY_INTERVAL = 5
 
 ## Game length
-@export_range(0, 120) var level_time_total = 60
+@export_range(0, 60 * 10) var level_time_total = 120
+@export var experience_manager: ExperienceManager
 
 @onready var level_timer = $LevelTimer
 
@@ -45,13 +46,10 @@ func pause_game():
 
 
 func show_game_over(win: bool):
+    MetaProgression.write_save()
     level_timer.paused = true
     var game_over_menu_instance: GameOverScreen = await GameScreens.add_scene(GameScreens.GAME_OVER_SCENE_REF, self)
-
-    if (win):
-        game_over_menu_instance.show_victory()
-    else:
-        game_over_menu_instance.show_defeat()
+    game_over_menu_instance.show_screen(win, experience_manager.total_experience)
 
 
 func on_timer_tick():

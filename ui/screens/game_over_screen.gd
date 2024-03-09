@@ -4,12 +4,16 @@ class_name GameOverScreen
 @onready var content_container = $%ContentContainer
 @onready var title_label = $%TitleLabel
 @onready var message_label = $%MessageLabel
-@onready var restart_button = $%RestartButton
+@onready var experience_label = $%ExperienceLabel
+@onready var continue_button = $%ContinueButton
 @onready var main_menu_button = $%MainMenuButton
 
 
 func _ready():
     process_mode = Node.PROCESS_MODE_ALWAYS
+
+    continue_button.pressed.connect(on_continue_button_pressed)
+    main_menu_button.pressed.connect(on_quit_button_pressed)
     
     content_container.pivot_offset = content_container.size / 2
     var tween = create_tween()
@@ -19,8 +23,6 @@ func _ready():
         .set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
     
     get_tree().paused = true
-    restart_button.pressed.connect(on_restart_button_pressed)
-    main_menu_button.pressed.connect(on_quit_button_pressed)
 
 
 func _exit_tree():
@@ -28,16 +30,16 @@ func _exit_tree():
     get_tree().paused = false
 
 
-func show_defeat():
-    title_label.text = "Defeat"
-    message_label.text = "You lost!"
-    play_jingle(false)
+func show_screen(win: bool, xp_earned: int):
+    if win:
+        title_label.text = "Victory"
+        message_label.text = "You won!"
+    else:
+        title_label.text = "Defeat"
+        message_label.text = "You lost!"
 
-
-func show_victory():
-    title_label.text = "Victory"
-    message_label.text = "You won!"
-    play_jingle(true)
+    experience_label.text = "%s XP Earned" % xp_earned
+    play_jingle(win)
 
 
 func play_jingle(win := true):
@@ -47,8 +49,8 @@ func play_jingle(win := true):
         $DefeatAudioPlayer.play()
 
 
-func on_restart_button_pressed():
-    GameScreens.change_scene(GameScreens.GAME_SCENE_PATH)
+func on_continue_button_pressed():
+    GameScreens.change_scene(GameScreens.META_UPGRADES_SCENE_PATH)
 
 
 func on_quit_button_pressed():

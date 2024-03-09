@@ -66,7 +66,7 @@ func on_leveled_up(level: int):
     if !random_upgrades.size():
         return
 
-    var upgrade_screen_instance = upgrade_screen_scene.instantiate() as UpgradeScreen
+    var upgrade_screen_instance = upgrade_screen_scene.instantiate() as AbilityUpgradeScreen
     add_child(upgrade_screen_instance)
 
     var _upgrade_options = random_upgrades.map(map_upgrade_for_ui)

@@ -1,7 +1,7 @@
 extends Resource
 class_name AbilityUpgrade
 
-# TODO: Implemente item weighting
+# TODO: Implement item weighting
 
 @export var id: String
 @export var name: String

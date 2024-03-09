@@ -2,9 +2,16 @@ extends CanvasLayer
 
 
 func _ready():
+    $%MetaUpgradesButton.pressed.connect(on_meta_upgrades_pressed)
     $%QuitButton.pressed.connect(on_quit_pressed)
     $%PlayButton.pressed.connect(on_play_pressed)
     $%OptionsButton.pressed.connect(on_options_pressed)
+
+    $%ExperienceLabel.text = str(MetaProgression.upgrade_currency)
+
+
+func on_meta_upgrades_pressed():
+    GameScreens.change_scene(GameScreens.META_UPGRADES_SCENE_PATH)
 
 
 func on_options_pressed():

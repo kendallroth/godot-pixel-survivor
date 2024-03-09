@@ -16,7 +16,6 @@ func _ready():
     main_menu_button.pressed.connect(on_main_menu_button_pressed)
 
     process_mode = Node.PROCESS_MODE_ALWAYS
-    # set_process_input(true)
     get_tree().paused = true
     animation_player.play("default")
     closing = false

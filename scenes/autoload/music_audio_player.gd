@@ -9,10 +9,11 @@ func _ready():
     timer.timeout.connect(on_timer_timeout)
 
 
+#region Listeners
 func on_finished():
     timer.start()
 
 
 func on_timer_timeout():
     play()
-
+#endregion

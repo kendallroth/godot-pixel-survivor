@@ -8,12 +8,12 @@
 [ext_resource type="Texture2D" uid="uid://cjddaj0hcrmas" path="res://assets/tilemap/tilemap_packed.png" id="3_a1gin"]
 [ext_resource type="PackedScene" uid="uid://bmn0p4go1f7k4" path="res://scenes/managers/experience_manager.tscn" id="3_y5mdu"]
 [ext_resource type="PackedScene" uid="uid://tu83jqlmjxc0" path="res://scenes/managers/upgrade_manager.tscn" id="4_7wpoc"]
-[ext_resource type="Resource" uid="uid://ltn4dj6i7vwm" path="res://resources/upgrades/axe/axe_ability.tres" id="4_qa5xj"]
-[ext_resource type="Resource" uid="uid://ctopx87viqpci" path="res://resources/upgrades/sword/sword_damage.tres" id="5_n56af"]
-[ext_resource type="Resource" uid="uid://b7n1v7v3sl8v1" path="res://resources/upgrades/sword/sword_rate.tres" id="5_ow53y"]
-[ext_resource type="Resource" uid="uid://c7k3ein3itqsl" path="res://resources/upgrades/axe/axe_rate.tres" id="8_2isy3"]
-[ext_resource type="Resource" uid="uid://woejyww5ryxb" path="res://resources/upgrades/axe/axe_damage.tres" id="8_klms1"]
-[ext_resource type="Resource" uid="uid://cw3c6nk3jguwc" path="res://resources/upgrades/player/player_speed.tres" id="9_1dwcx"]
+[ext_resource type="Resource" uid="uid://ltn4dj6i7vwm" path="res://resources/ability_upgrades/axe/axe_ability.tres" id="4_qa5xj"]
+[ext_resource type="Resource" uid="uid://ctopx87viqpci" path="res://resources/ability_upgrades/sword/sword_damage.tres" id="5_n56af"]
+[ext_resource type="Resource" uid="uid://b7n1v7v3sl8v1" path="res://resources/ability_upgrades/sword/sword_rate.tres" id="5_ow53y"]
+[ext_resource type="Resource" uid="uid://c7k3ein3itqsl" path="res://resources/ability_upgrades/axe/axe_rate.tres" id="8_2isy3"]
+[ext_resource type="Resource" uid="uid://woejyww5ryxb" path="res://resources/ability_upgrades/axe/axe_damage.tres" id="8_klms1"]
+[ext_resource type="Resource" uid="uid://cw3c6nk3jguwc" path="res://resources/ability_upgrades/player/player_speed.tres" id="9_1dwcx"]
 [ext_resource type="PackedScene" uid="uid://cvgl1twpp0pg3" path="res://ui/overlays/debug_overlay.tscn" id="9_rx8i1"]
 [ext_resource type="PackedScene" uid="uid://8io24htcugal" path="res://ui/overlays/vignette.tscn" id="12_8knsj"]
 
@@ -465,15 +465,16 @@ bg_color = Color(0.462745, 0.231373, 0.211765, 1)
 
 [node name="Managers" type="Node" parent="."]
 
-[node name="GameManager" parent="Managers" instance=ExtResource("2_6f4mx")]
-level_time_total = 120
+[node name="GameManager" parent="Managers" node_paths=PackedStringArray("experience_manager") instance=ExtResource("2_6f4mx")]
+level_time_total = 300
+experience_manager = NodePath("../ExperienceManager")
 
 [node name="ExperienceManager" parent="Managers" instance=ExtResource("3_y5mdu")]
-target_experience = 3
-target_experience_growth = 3
+target_experience = 10
+target_experience_growth = 10
 
 [node name="UpgradeManager" parent="Managers" node_paths=PackedStringArray("experience_manager") instance=ExtResource("4_7wpoc")]
-upgrade_pool = Array[Resource("res://resources/upgrades/ability_upgrade.gd")]([ExtResource("5_ow53y"), ExtResource("5_n56af"), ExtResource("4_qa5xj"), ExtResource("8_2isy3"), ExtResource("8_klms1"), ExtResource("9_1dwcx")])
+upgrade_pool = Array[Resource("res://resources/ability_upgrades/ability_upgrade.gd")]([ExtResource("5_ow53y"), ExtResource("5_n56af"), ExtResource("4_qa5xj"), ExtResource("8_2isy3"), ExtResource("8_klms1"), ExtResource("9_1dwcx")])
 experience_manager = NodePath("../ExperienceManager")
 
 [node name="EnemyManager" parent="Managers" node_paths=PackedStringArray("level_manager") instance=ExtResource("1_w6ugv")]
@@ -483,7 +484,7 @@ level_manager = NodePath("../GameManager")
 
 [node name="Vignette" parent="UI" instance=ExtResource("12_8knsj")]
 
-[node name="LevelUI" parent="UI" node_paths=PackedStringArray("experience_manager", "level_manager") instance=ExtResource("2_fnk0g")]
+[node name="HudUI" parent="UI" node_paths=PackedStringArray("experience_manager", "level_manager") instance=ExtResource("2_fnk0g")]
 experience_manager = NodePath("../../Managers/ExperienceManager")
 level_manager = NodePath("../../Managers/GameManager")
 

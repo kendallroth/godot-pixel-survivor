@@ -6,7 +6,7 @@ var upgrade: AbilityUpgrade
 var quantity: int = 0
 
 
-static func create(upgrade: AbilityUpgrade, quantity: int):
+static func create(upgrade: AbilityUpgrade, quantity: int) -> AbilityUpgradeUI:
     var instance = AbilityUpgradeUI.new()
     instance.upgrade = upgrade
     instance.quantity = quantity

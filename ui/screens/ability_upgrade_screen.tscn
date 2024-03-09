@@ -1,7 +1,22 @@
 [gd_scene load_steps=7 format=3 uid="uid://bwy72b17di15v"]
 
-[ext_resource type="Script" path="res://ui/screens/upgrade_screen.gd" id="1_bd1mf"]
+[ext_resource type="Script" path="res://ui/screens/ability_upgrade_screen.gd" id="1_bd1mf"]
 [ext_resource type="PackedScene" uid="uid://cpjvopuq482nn" path="res://ui/components/ability_upgrade_card.tscn" id="1_ld1rk"]
+
+[sub_resource type="Animation" id="Animation_bkheg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_2t82f"]
 resource_name = "in"
@@ -18,21 +33,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_bkheg"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Background:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_bk3fl"]
@@ -59,7 +59,7 @@ _data = {
 "out": SubResource("Animation_bk3fl")
 }
 
-[node name="UpgradeScreen" type="CanvasLayer"]
+[node name="AbilityUpgradeScreen" type="CanvasLayer"]
 script = ExtResource("1_bd1mf")
 upgrade_card_scene = ExtResource("1_ld1rk")
 

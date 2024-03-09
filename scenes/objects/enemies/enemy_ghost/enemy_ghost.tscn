@@ -12,11 +12,11 @@
 [ext_resource type="PackedScene" uid="uid://c455ngw6uqq7v" path="res://scenes/components/hit_flash_component.tscn" id="6_ccajx"]
 [ext_resource type="PackedScene" uid="uid://bb0rtcaqxk07u" path="res://scenes/objects/pickups/health_pickup/health_pickup.tscn" id="6_khsqo"]
 [ext_resource type="Shader" path="res://scenes/components/hit_flash_component.gdshader" id="7_pqba4"]
-[ext_resource type="AudioStream" uid="uid://dk6dqwald2ey2" path="res://assets/audio/effects/enemy_hit/footstep_carpet_001.ogg" id="9_culm3"]
-[ext_resource type="AudioStream" uid="uid://bh00fvtpctc4s" path="res://assets/audio/effects/enemy_hit/footstep_carpet_000.ogg" id="9_jrwwp"]
-[ext_resource type="AudioStream" uid="uid://be06oso5m0e81" path="res://assets/audio/effects/enemy_hit/footstep_carpet_002.ogg" id="11_yt3s1"]
-[ext_resource type="AudioStream" uid="uid://brfqxd4abc5om" path="res://assets/audio/effects/enemy_hit/footstep_carpet_003.ogg" id="12_l1iex"]
-[ext_resource type="AudioStream" uid="uid://dh0xnsgk1hbce" path="res://assets/audio/effects/enemy_hit/footstep_carpet_004.ogg" id="13_xr2qq"]
+[ext_resource type="AudioStream" uid="uid://dk6dqwald2ey2" path="res://assets/audio/effects/enemy/enemy_hit/footstep_carpet_001.ogg" id="9_culm3"]
+[ext_resource type="AudioStream" uid="uid://bh00fvtpctc4s" path="res://assets/audio/effects/enemy/enemy_hit/footstep_carpet_000.ogg" id="9_jrwwp"]
+[ext_resource type="AudioStream" uid="uid://be06oso5m0e81" path="res://assets/audio/effects/enemy/enemy_hit/footstep_carpet_002.ogg" id="11_yt3s1"]
+[ext_resource type="AudioStream" uid="uid://brfqxd4abc5om" path="res://assets/audio/effects/enemy/enemy_hit/footstep_carpet_003.ogg" id="12_l1iex"]
+[ext_resource type="AudioStream" uid="uid://dh0xnsgk1hbce" path="res://assets/audio/effects/enemy/enemy_hit/footstep_carpet_004.ogg" id="13_xr2qq"]
 
 [sub_resource type="Animation" id="Animation_i3hxi"]
 length = 0.4
@@ -138,7 +138,6 @@ max_health = 25.0
 
 [node name="EnemyDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_n351g")]
 item_table = Array[ExtResource("5_5foyw")]([SubResource("Resource_5xcwe"), SubResource("Resource_bymkh")])
-drop_chance = 0.45
 health_component = NodePath("../HealthComponent")
 
 [node name="VelocityComponent" parent="." node_paths=PackedStringArray("sprite_parent") instance=ExtResource("3_hl1u7")]
