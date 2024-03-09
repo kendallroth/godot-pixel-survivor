@@ -68,7 +68,6 @@ func on_spawn_timer():
     spawn_timer.start()
     
     for i in enemies_per_spawn:
-        print("spawning ", i)
         var entities_layer := get_tree().get_first_node_in_group("layer_entities")
         var enemy_scene = enemy_table.get_item()
         var enemy := enemy_scene.instantiate() as Node2D

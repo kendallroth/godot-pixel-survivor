@@ -52,7 +52,7 @@ func apply_upgrade(upgrade: AbilityUpgrade):
         current_upgrades[upgrade.id]["quantity"] += 1
 
     GameEvents.player_upgraded_ability.emit(upgrade, current_upgrades)
-    print(current_upgrades)
+    print_debug("Current upgrades ", current_upgrades)
 
 
 func map_upgrade_for_ui(upgrade: AbilityUpgrade) -> AbilityUpgradeUI:

@@ -2,4 +2,6 @@
 .godot/
 
 # Build files
-export/
+export/**
+!export/**/.gitkeep
+!export/web/.gitkeep

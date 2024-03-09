@@ -510,9 +510,9 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8yx6t")
 
+[node name="Player" parent="." instance=ExtResource("1_p7alp")]
+
 [node name="Entities" type="Node2D" parent="." groups=["layer_entities"]]
 y_sort_enabled = true
-
-[node name="Player" parent="Entities" instance=ExtResource("1_p7alp")]
 
 [node name="Foreground" type="Node2D" parent="." groups=["layer_foreground"]]

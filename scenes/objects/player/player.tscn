@@ -112,6 +112,7 @@ radius = 6.0
 collision_layer = 16
 motion_mode = 1
 script = ExtResource("1_232lt")
+starting_ability_controller = ExtResource("2_g3if1")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -130,9 +131,6 @@ sprite_parent = NodePath("../BodySpriteParent")
 [node name="HealthComponent" parent="." instance=ExtResource("2_q5i45")]
 
 [node name="AbilityControllers" type="Node" parent="."]
-
-[node name="SwordAbilityController" parent="AbilityControllers" instance=ExtResource("2_g3if1")]
-max_range = 125
 
 [node name="RegenTimer" type="Timer" parent="."]
 wait_time = 30.0

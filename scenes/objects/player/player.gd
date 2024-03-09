@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Player
 
+@export var starting_ability_controller: PackedScene
+
 @onready var abilities_node := $AbilityControllers
 @onready var animation_player := $AnimationPlayer
 @onready var health_component := $HealthComponent
@@ -26,6 +28,10 @@ func _ready():
     health_component.died.connect(on_died)
     GameEvents.player_upgraded_ability.connect(on_player_upgraded_ability)
     GameEvents.player_collected_pickup.connect(on_player_collected_pickup)
+
+    if starting_ability_controller:
+        var starting_ability_instance = starting_ability_controller.instantiate()
+        abilities_node.add_child(starting_ability_instance)
     
     base_speed = velocity_component.max_speed
     health_bar.value = health_component.health_percent

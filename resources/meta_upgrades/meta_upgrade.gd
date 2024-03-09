@@ -8,7 +8,7 @@ class_name MetaUpgrade
 ## Base base_cost (not including upgrade level multiplier)
 @export var base_cost := 100
 ## Multiplier for determining cost for next upgrade level (applied against previous cost)
-@export_range(1, 20) var level_cost_multiplier := 2
+@export_range(1, 20, 0.1) var level_cost_multiplier := 2.0
 @export_range(0, 100) var max_quantity := 1
 
 
