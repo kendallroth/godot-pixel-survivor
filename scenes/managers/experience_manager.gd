@@ -21,10 +21,18 @@ var current_experience_percent:
 func _ready():
     GameEvents.player_collected_pickup.connect(on_player_collected_pickup)
 
-    # TODO: Allow disabling while testing...
-    if OS.is_debug_build():
-        target_experience = 3
-        target_experience_growth = 3
+    set_process_input(true)
+
+
+func _unhandled_input(event: InputEvent):
+    if !OS.is_debug_build() || event.is_echo():
+        return
+
+    # DEBUG: Allow incrementing experience/level quickly (in debug)
+    if Input.is_key_pressed(Key.KEY_X):
+        increment_experience(current_level)
+    elif Input.is_key_pressed(Key.KEY_L):
+        increment_experience(target_experience - current_experience)
 
 
 func increment_experience(value: float):
@@ -56,8 +64,10 @@ func increment_level(carry_over := 0):
     GameEvents.player_level_changed.emit(current_level)
 
 
+#region Listeners
 func on_player_collected_pickup(pickup: PickupItem):
     if pickup.pickup_type != GameEnums.PickupItemType.EXPERIENCE:
         return
 
     increment_experience(pickup.pickup_amount)
+#endregion
