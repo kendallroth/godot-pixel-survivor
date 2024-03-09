@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://k2apuyuh6x4t"
-path="res://.godot/imported/enemy_basic_grey.png-f15caaafa3e33227ee3664fac7fc6409.ctex"
+path="res://.godot/imported/enemy_rat_grey.png-dffa8db06470645290972f2dc286543b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/objects/enemies/enemy_basic/enemy_basic_grey.png"
-dest_files=["res://.godot/imported/enemy_basic_grey.png-f15caaafa3e33227ee3664fac7fc6409.ctex"]
+source_file="res://scenes/objects/enemies/enemy_rat/enemy_rat_grey.png"
+dest_files=["res://.godot/imported/enemy_rat_grey.png-dffa8db06470645290972f2dc286543b.ctex"]
 
 [params]
 

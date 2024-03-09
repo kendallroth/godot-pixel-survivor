@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/managers/enemy_manager.gd" id="1_wdvgm"]
 [ext_resource type="PackedScene" uid="uid://btag0253s7hhs" path="res://scenes/objects/enemies/enemy_ghost/enemy_ghost.tscn" id="2_d2xkl"]
-[ext_resource type="PackedScene" uid="uid://ck57qfpbatoqq" path="res://scenes/objects/enemies/enemy_basic/enemy_basic.tscn" id="2_uvd85"]
+[ext_resource type="PackedScene" uid="uid://ck57qfpbatoqq" path="res://scenes/objects/enemies/enemy_rat/enemy_rat.tscn" id="2_uvd85"]
 
 [node name="EnemyManager" type="Node"]
 script = ExtResource("1_wdvgm")

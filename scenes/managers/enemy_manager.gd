@@ -37,7 +37,14 @@ func get_spawn_position(player_position: Vector2) -> Vector2:
 
     for i in 4:
         spawn_position = player_position + (random_direction * SPAWN_RADIUS)
-        var ray_args := PhysicsRayQueryParameters2D.create(player_position, spawn_position, PhysicsLayers.ENVIRONMENT)
+
+        # Avoid spawning enemies in walls by checking an additional distance beyond desired spawn location
+        var additional_check_offset = random_direction * 20
+        var ray_args := PhysicsRayQueryParameters2D.create(
+            player_position,
+            spawn_position + additional_check_offset,
+            PhysicsLayers.ENVIRONMENT
+        )
         var result := get_tree().root.world_2d.direct_space_state.intersect_ray(ray_args)
         if result.is_empty():
             break

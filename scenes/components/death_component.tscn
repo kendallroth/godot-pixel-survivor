@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://dc8282q2n8jsw"]
 
-[ext_resource type="Texture2D" uid="uid://54d3nx38rs0a" path="res://scenes/objects/enemies/enemy_basic/enemy_basic_brown.png" id="1_x0sx0"]
+[ext_resource type="Texture2D" uid="uid://54d3nx38rs0a" path="res://scenes/objects/enemies/enemy_rat/enemy_rat_brown.png" id="1_x0sx0"]
 [ext_resource type="Script" path="res://scenes/components/death_component.gd" id="1_y36kr"]
 [ext_resource type="PackedScene" uid="uid://cefsg5yb2fms8" path="res://scenes/components/random_audio_player_2d_component.tscn" id="3_bi5h0"]
 
