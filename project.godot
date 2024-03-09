@@ -21,6 +21,7 @@ boot_splash/use_filter=false
 config/icon="res://icon.png"
 config/windows_native_icon="res://icon.ico"
 config/main_scene="res://levels/main_menu.tscn"
+config/custom_user_dir_name.debug="godot_kroth/PixelSurvivors_debug"
 
 [audio]
 
@@ -49,6 +50,8 @@ window/size/window_width_override=1248
 window/size/window_height_override=702
 window/stretch/mode="viewport"
 mouse_cursor/custom_image="res://assets/ui/cursor_hand_grey.png"
+mouse_cursor/custom_image_hotspot=Vector2(2, 2)
+mouse_cursor/tooltip_position_offset=Vector2(12, 12)
 window/size/mode.debug=0
 
 [editor]

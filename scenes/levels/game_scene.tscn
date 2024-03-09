@@ -468,6 +468,7 @@ bg_color = Color(0.462745, 0.231373, 0.211765, 1)
 [node name="Managers" type="Node" parent="."]
 
 [node name="GameManager" parent="Managers" node_paths=PackedStringArray("experience_manager") instance=ExtResource("2_6f4mx")]
+game_time_total = 300
 experience_manager = NodePath("../ExperienceManager")
 
 [node name="ExperienceManager" parent="Managers" instance=ExtResource("3_y5mdu")]

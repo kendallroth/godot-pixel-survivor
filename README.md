@@ -9,6 +9,8 @@
   - Consider using `Resources` for enemy type configuration (vs inline resources)
 - Create static func/singleton for finding random position within arena
 - Refactor menu background to a re-usable scene
+- Animate progress bars
+- Consider moving pickup sound to game events (ie. player healed, etc)?
 - Determine how to link between ability upgrades descriptions and actual behaviour (ie. 10% speed increase is hardcoded)
 - Consider allowing rerolling upgrades at cost of player health?
 - Implement debug/testing system (console?)

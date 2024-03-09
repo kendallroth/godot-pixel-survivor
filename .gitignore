@@ -1,7 +1,7 @@
 # Godot 4+ specific ignores
 .godot/
 
-# Build files
-export/**
+# Export files (keep structure with .gitkeep)
+export/**/*
+!export/**/
 !export/**/.gitkeep
-!export/web/.gitkeep

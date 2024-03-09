@@ -153,7 +153,7 @@ autowrap_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"OutlineLabel"
-text = "Sample description here"
+text = "Sample description here with long content"
 horizontal_alignment = 1
 autowrap_mode = 2
 
