@@ -2,6 +2,8 @@
 
 > Survivor-style game implemented in Godot 4 with GDScript (following Udemy series from Firebelly)
 
+![game](./assets/screenshots/game_screen.png)
+
 ## Todo
 
 - Change ability upgrade to use weighting (and min-level)
