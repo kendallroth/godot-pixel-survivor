@@ -7,13 +7,12 @@
 - Change ability upgrade to use weighting (and min-level)
 - Change enemy manager to use enemy weighting via configurable component (vs `WeightedTable`)
   - Consider using `Resources` for enemy type configuration (vs inline resources)
-- Implement debug/testing system (console?)
-  - Add XP, add level, drop pickup, etc
 - Refactor menu background to a re-usable scene
-- Investigate automatically detecting required child Nodes (like Unity's) `GetComponentInChildren`
 - Determine how to link between ability upgrades descriptions and actual behaviour (ie. 10% speed increase is hardcoded)
 - Consider allowing rerolling upgrades at cost of player health?
-- Consolidate ability/meta upgrade cards
+- Implement debug/testing system (console?)
+  - Add XP, add level, drop pickup, etc
+- Investigate automatically detecting required child Nodes (like Unity's) `GetComponentInChildren`
 
 ## Bugs
 

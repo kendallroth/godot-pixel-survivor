@@ -1,4 +1,5 @@
 # AUTOLOADED
+
 extends AudioStreamPlayer
 
 @onready var timer := $DelayTimer

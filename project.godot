@@ -21,11 +21,16 @@ boot_splash/use_filter=false
 config/icon="res://icon.png"
 config/main_scene="res://levels/main_menu.tscn"
 
+[audio]
+
+buses/default_bus_layout="res://resources/audio_bus_layout.tres"
+
 [autoload]
 
 GameEvents="*res://scenes/autoload/game_events.tscn"
-MusicAudioPlayer="*res://scenes/autoload/music_audio_player.tscn"
 GameScreens="*res://scenes/autoload/game_screens.tscn"
+GameSettings="*res://scenes/autoload/game_settings.tscn"
+MusicAudioPlayer="*res://scenes/autoload/music_audio_player.tscn"
 MetaProgression="*res://scenes/autoload/meta_progression.tscn"
 
 [debug]

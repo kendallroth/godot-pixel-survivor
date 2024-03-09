@@ -7,7 +7,7 @@ class_name WeightedResource
 # NOTE: Unfortunately cannot type input as passing subclasses (of `WeightedResource`) does not work
 #         due to GD Script limitation with array types (passed by reference, retaining original type)
 static func get_item(items: Array) -> WeightedResource:
-    # Filter out non-EnemyDropItem items since array arg cannot be typed 🤦‍♀️
+    # Filter out non-WeightedResource items since array arg cannot be typed 🤦‍♀️
     var filtered_items = items.filter(func (item): return item is WeightedResource)
 
     var weight_sum: int = filtered_items.reduce(func(accum, item): return accum + item.weight, 0)

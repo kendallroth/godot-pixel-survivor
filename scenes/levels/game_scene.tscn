@@ -471,7 +471,6 @@ experience_manager = NodePath("../ExperienceManager")
 
 [node name="ExperienceManager" parent="Managers" instance=ExtResource("3_y5mdu")]
 target_experience = 10
-target_experience_growth = 10
 
 [node name="UpgradeManager" parent="Managers" node_paths=PackedStringArray("experience_manager") instance=ExtResource("4_7wpoc")]
 upgrade_pool = Array[Resource("res://resources/ability_upgrades/ability_upgrade.gd")]([ExtResource("5_ow53y"), ExtResource("5_n56af"), ExtResource("4_qa5xj"), ExtResource("8_2isy3"), ExtResource("8_klms1"), ExtResource("9_1dwcx")])

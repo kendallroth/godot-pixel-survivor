@@ -80,5 +80,5 @@ func on_level_difficulty_changed(difficulty: int):
     var new_spawn_time: float = max(base_spawn_interval - time_removed_for_difficulty, min_spawn_interval)
     spawn_timer.wait_time = new_spawn_time
 
-    if difficulty == 6:
+    if difficulty == 10:
         enemy_table.add_item(ghost_enemy_scene, 20)
