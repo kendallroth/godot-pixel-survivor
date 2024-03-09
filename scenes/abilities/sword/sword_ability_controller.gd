@@ -23,24 +23,19 @@ func _ready():
     spawn_timer.timeout.connect(on_timer_timeout)
 
 
-#region Listeners
-func on_timer_timeout():
-    var player := get_tree().get_first_node_in_group("player") as Node2D
-    if (player == null):
-        return
-
+func spawn_sword(position: Vector2):
     # Find all enemies within range
     var enemies = get_tree().get_nodes_in_group("enemies")
     enemies = enemies.filter(func (enemy: Node2D):
-        return enemy.global_position.distance_squared_to(player.global_position) < pow(max_range, 2)
+        return enemy.global_position.distance_squared_to(position) < pow(max_range, 2)
     )
     if (enemies.size() == 0):
         return
 
     # Attack closest enemy
     enemies.sort_custom(func(a: Node2D, b: Node2D):
-        var a_distance = a.global_position.distance_squared_to(player.global_position)
-        var b_distance = b.global_position.distance_squared_to(player.global_position)
+        var a_distance = a.global_position.distance_squared_to(position)
+        var b_distance = b.global_position.distance_squared_to(position)
         return a_distance < b_distance
     )
     var closest_enemy = enemies[0]
@@ -55,6 +50,15 @@ func on_timer_timeout():
     # Orient the sword towards the enemy
     var enemy_direction = closest_enemy.global_position - sword_instance.global_position
     sword_instance.rotation = enemy_direction.angle()
+
+
+#region Listeners
+func on_timer_timeout():
+    var player := get_tree().get_first_node_in_group("player") as Node2D
+    if !player:
+        return
+    
+    spawn_sword(player.global_position)
 
 
 func on_ability_upgraded(upgrade: AbilityUpgrade, upgrades: Dictionary):

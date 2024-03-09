@@ -26,17 +26,21 @@ func _ready():
     spawn_timer.timeout.connect(on_timer_timeout)
 
 
+func spawn_axe(position: Vector2):
+    var axe_instance = axe_ability_scene.instantiate() as AxeAbility    
+    var foreground_layer = get_tree().get_first_node_in_group("layer_foreground")
+    axe_instance.global_position = position
+    foreground_layer.add_child(axe_instance)
+    axe_instance.initialize(damage, duration, rotations)
+
+
 #region Listeners
 func on_timer_timeout():
     var player = get_tree().get_first_node_in_group("player") as Node2D
-    if (player == null):
+    if !player:
         return
-
-    var axe_instance = axe_ability_scene.instantiate() as AxeAbility    
-    var foreground_layer = get_tree().get_first_node_in_group("layer_foreground")
-    axe_instance.global_position = player.global_position
-    foreground_layer.add_child(axe_instance)
-    axe_instance.initialize(damage, duration, rotations)
+    
+    spawn_axe(player.global_position)
 
 
 func on_ability_upgraded(upgrade: AbilityUpgrade, upgrades: Dictionary):

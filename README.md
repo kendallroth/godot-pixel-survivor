@@ -21,12 +21,16 @@
 - Staff weapon that shoots a projectile traveling in a straight line, damaging all enemies in contact
 - Bomb drop that will explode and damage enemies in area
 
-## Bugs
+## Known Bugs 🐛
 
-- Enemies occasionally get stuck in top wall (likely due to spawn?)
+_None reported_
 
 ## Caveats
 
 ### Pickup System
 
 Currently the pickup system is "handled" by the pickup items themselves detecting collisions with player, rather than player having a pickup system component. This feels a bit odd, but perhaps is the easiest way of supporting the pickup/tweening logic 🤷. The system has been drastically improved from the series (no need for individual classes), although it does use a global enum for determining upgrade type (for string safety).
+
+### Vignette
+
+Since all vignettes share the same shader/material, the underlying shader is modified when animating the player's vignette on damage. This can be worked around by ensuring the vignette runs in `ALWAYS` mode while running the hit animation. However, this feels less than ideal, and maybe could be improved?

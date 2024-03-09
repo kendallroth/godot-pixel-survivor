@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cjqqt5hwelnde"]
+[gd_scene load_steps=22 format=3 uid="uid://cjqqt5hwelnde"]
 
 [ext_resource type="PackedScene" uid="uid://bwqebkaidgjxs" path="res://scenes/camera/game_camera.tscn" id="1_73mi5"]
 [ext_resource type="PackedScene" uid="uid://jj5i8ep0olbv" path="res://scenes/objects/player/player.tscn" id="1_p7alp"]
@@ -16,6 +16,7 @@
 [ext_resource type="Resource" uid="uid://woejyww5ryxb" path="res://resources/ability_upgrades/axe/axe_damage.tres" id="8_klms1"]
 [ext_resource type="Resource" uid="uid://cw3c6nk3jguwc" path="res://resources/ability_upgrades/player/player_speed.tres" id="9_1dwcx"]
 [ext_resource type="PackedScene" uid="uid://cvgl1twpp0pg3" path="res://ui/overlays/debug_overlay.tscn" id="9_rx8i1"]
+[ext_resource type="Resource" uid="uid://bpykwrbp4kinp" path="res://resources/ability_upgrades/anvil/anvil_amount.tres" id="11_1ysuu"]
 [ext_resource type="PackedScene" uid="uid://8io24htcugal" path="res://ui/overlays/vignette.tscn" id="12_8knsj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bfhtu"]
@@ -474,7 +475,7 @@ experience_manager = NodePath("../ExperienceManager")
 target_experience = 10
 
 [node name="UpgradeManager" parent="Managers" node_paths=PackedStringArray("experience_manager") instance=ExtResource("4_7wpoc")]
-upgrade_pool = Array[Resource("res://resources/ability_upgrades/ability_upgrade.gd")]([ExtResource("5_ow53y"), ExtResource("5_n56af"), ExtResource("6_qe6ek"), ExtResource("4_qa5xj"), ExtResource("8_2isy3"), ExtResource("8_klms1"), ExtResource("9_1dwcx")])
+upgrade_pool = Array[Resource("res://resources/ability_upgrades/ability_upgrade.gd")]([ExtResource("5_ow53y"), ExtResource("5_n56af"), ExtResource("6_qe6ek"), ExtResource("11_1ysuu"), ExtResource("4_qa5xj"), ExtResource("8_2isy3"), ExtResource("8_klms1"), ExtResource("9_1dwcx")])
 experience_manager = NodePath("../ExperienceManager")
 
 [node name="EnemyManager" parent="Managers" node_paths=PackedStringArray("level_manager") instance=ExtResource("1_w6ugv")]
