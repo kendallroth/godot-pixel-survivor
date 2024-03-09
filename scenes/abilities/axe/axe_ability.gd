@@ -15,13 +15,13 @@ var max_radius:
 
 
 ## NOTE: Must be called *after* adding to scene tree!
-func initialize(_damage: float, _duration: float, _rotations: float):
+func initialize(damage: float, duration: float, rotations: float):
     base_rotations = rotations
     starting_rotation = Vector2.RIGHT.rotated(randf_range(0, TAU))
 
-    duration = _duration
-    rotations = _rotations
-    $HitboxComponent.damage = _damage
+    self.duration = duration
+    self.rotations = rotations
+    $HitboxComponent.damage = damage
 
     var tween = create_tween()
     # Interpolates up to rotation count over specified duration

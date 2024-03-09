@@ -86,7 +86,7 @@ _data = {
 script = ExtResource("5_ph865")
 item_scene = ExtResource("4_svr72")
 drop_amount = 3
-weight = 10
+weight = 20
 
 [sub_resource type="Resource" id="Resource_vgakt"]
 script = ExtResource("5_ph865")

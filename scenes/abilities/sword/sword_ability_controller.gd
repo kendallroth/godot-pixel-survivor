@@ -2,6 +2,7 @@ extends Node
 
 @export_range(0, 100) var damage = 5
 @export_range(5, 1000) var max_range = 100
+
 @export_group("References")
 @export var sword_ability_scene: PackedScene
 
@@ -22,8 +23,9 @@ func _ready():
     spawn_timer.timeout.connect(on_timer_timeout)
 
 
+#region Listeners
 func on_timer_timeout():
-    var player = get_tree().get_first_node_in_group("player") as Node2D
+    var player := get_tree().get_first_node_in_group("player") as Node2D
     if (player == null):
         return
 
@@ -43,7 +45,7 @@ func on_timer_timeout():
     )
     var closest_enemy = enemies[0]
 
-    var sword_instance = sword_ability_scene.instantiate() as SwordAbility    
+    var sword_instance := sword_ability_scene.instantiate() as SwordAbility
     # Offset the sword from enemy anywhere within a small offset circle
     sword_instance.global_position = closest_enemy.global_position + Vector2.RIGHT.rotated(randf_range(0, TAU)) * 4
     var foreground_layer = get_tree().get_first_node_in_group("layer_foreground")
@@ -66,3 +68,4 @@ func on_ability_upgraded(upgrade: AbilityUpgrade, upgrades: Dictionary):
     elif upgrade.id == "sword_range":
         var percent_increase = upgrades["sword_range"]["quantity"] * 0.1
         max_range = base_range * (1 + percent_increase)
+#endregion

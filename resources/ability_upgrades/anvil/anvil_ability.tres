@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=3 format=3 uid="uid://cx51hiw6u1ktp"]
+
+[ext_resource type="PackedScene" uid="uid://bin6llg1fc0uo" path="res://scenes/abilities/anvil/anvil_ability_controller.tscn" id="1_5c7da"]
+[ext_resource type="Script" path="res://resources/ability_upgrades/ability.gd" id="2_8joag"]
+
+[resource]
+script = ExtResource("2_8joag")
+controller_scene = ExtResource("1_5c7da")
+id = "anvil"
+name = "Anvil"
+description = "Periodically drops out a heavy anvil nearby."
+max_quantity = 1

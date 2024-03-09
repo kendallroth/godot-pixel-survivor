@@ -1,0 +1,151 @@
+[gd_scene load_steps=11 format=3 uid="uid://c2v70ss41tygr"]
+
+[ext_resource type="Script" path="res://scenes/abilities/anvil/anvil_ability.gd" id="1_2x045"]
+[ext_resource type="Texture2D" uid="uid://bslte20ecvp8f" path="res://scenes/abilities/anvil/anvil.png" id="1_6s77p"]
+[ext_resource type="PackedScene" uid="uid://bndqcuev164ub" path="res://scenes/components/hitbox_component.tscn" id="2_73loc"]
+[ext_resource type="PackedScene" uid="uid://cefsg5yb2fms8" path="res://scenes/components/random_audio_player_2d_component.tscn" id="2_gqbol"]
+[ext_resource type="AudioStream" uid="uid://bkxinvkuu78wa" path="res://assets/audio/effects/abilities/anvil_hit/impactBell_heavy_002.ogg" id="3_38f03"]
+[ext_resource type="AudioStream" uid="uid://cbiipedm4ab3j" path="res://assets/audio/effects/abilities/anvil_hit/impactBell_heavy_003.ogg" id="4_mcv3l"]
+
+[sub_resource type="Animation" id="Animation_0kooo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnvilSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -100)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HitboxComponent/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnvilSprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0arvo"]
+resource_name = "default"
+length = 0.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnvilSprite:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.25, 0.35),
+"transitions": PackedFloat32Array(1.7411, 1, 1.93187, 1),
+"update": 0,
+"values": [Vector2(0, -100), Vector2(0, 0), Vector2(0, -10), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HitboxComponent/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnvilSprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5, 0.6),
+"transitions": PackedFloat32Array(1.86607, 1, 1.1487, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1), Vector2(1, 1), Vector2(0, 0)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RandomAudioPlayerComponent")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_random"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dbw7c"]
+_data = {
+"RESET": SubResource("Animation_0kooo"),
+"default": SubResource("Animation_0arvo")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rm8i0"]
+radius = 32.0
+
+[node name="AnvilAbility" type="Node2D"]
+script = ExtResource("1_2x045")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dbw7c")
+}
+autoplay = "default"
+
+[node name="RandomAudioPlayerComponent" parent="." instance=ExtResource("2_gqbol")]
+audio_streams = Array[AudioStream]([ExtResource("3_38f03"), ExtResource("4_mcv3l")])
+min_pitch = 0.5
+max_pitch = 0.65
+
+[node name="AnvilSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -100)
+texture = ExtResource("1_6s77p")
+offset = Vector2(0, -7)
+
+[node name="HitboxComponent" parent="." instance=ExtResource("2_73loc")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_rm8i0")
+disabled = true

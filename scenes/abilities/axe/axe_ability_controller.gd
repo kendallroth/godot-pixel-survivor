@@ -5,6 +5,7 @@ extends Node
 @export_range(1, 5) var rotations = 2
 ## How long axe remains after spawning
 @export_range(0.5, 10) var duration = 2.5
+
 @export_group("References")
 @export var axe_ability_scene: PackedScene
 
@@ -25,6 +26,7 @@ func _ready():
     spawn_timer.timeout.connect(on_timer_timeout)
 
 
+#region Listeners
 func on_timer_timeout():
     var player = get_tree().get_first_node_in_group("player") as Node2D
     if (player == null):
@@ -49,3 +51,4 @@ func on_ability_upgraded(upgrade: AbilityUpgrade, upgrades: Dictionary):
     elif upgrade.id == "axe_range":
         var percent_increase = upgrades["axe_range"]["quantity"] * 0.1
         rotations = base_rotations * (1 + percent_increase)
+#endregion

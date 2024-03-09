@@ -21,6 +21,11 @@ var current_experience_percent:
 func _ready():
     GameEvents.player_collected_pickup.connect(on_player_collected_pickup)
 
+    # TODO: Allow disabling while testing...
+    if OS.is_debug_build():
+        target_experience = 3
+        target_experience_growth = 3
+
 
 func increment_experience(value: float):
     total_experience += value
