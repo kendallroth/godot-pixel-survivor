@@ -1,17 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://dpfpl3qeuqi5i"]
+[gd_scene load_steps=9 format=3 uid="uid://dpfpl3qeuqi5i"]
 
 [ext_resource type="Script" path="res://ui/screens/meta_upgrades_screen.gd" id="1_dklx8"]
 [ext_resource type="Texture2D" uid="uid://benyfbl7qaij6" path="res://assets/ui/menu_background.png" id="2_au2f0"]
 [ext_resource type="PackedScene" uid="uid://cdfw4ahyvd0a1" path="res://ui/components/meta_upgrade_card.tscn" id="2_kr4am"]
 [ext_resource type="Resource" uid="uid://dg02n21cthhsw" path="res://resources/meta_upgrades/drop_chance.tres" id="3_irimn"]
 [ext_resource type="PackedScene" uid="uid://8io24htcugal" path="res://ui/overlays/vignette.tscn" id="3_r7lak"]
+[ext_resource type="Resource" uid="uid://c2s2j264b50p8" path="res://resources/meta_upgrades/health_regen.tres" id="4_syute"]
 [ext_resource type="PackedScene" uid="uid://bat0dhmgguogl" path="res://ui/components/sound_button.tscn" id="6_vl8qn"]
 [ext_resource type="Texture2D" uid="uid://wnmdmt3p0nni" path="res://scenes/objects/pickups/experience_pickup/experience_vial.png" id="7_ahjud"]
 
 [node name="MetaUpgradesScreen" type="CanvasLayer" groups=["meta_upgrade_card"]]
 script = ExtResource("1_dklx8")
 upgrade_card_scene = ExtResource("2_kr4am")
-meta_upgrades = Array[Resource("res://resources/meta_upgrades/meta_upgrade.gd")]([ExtResource("3_irimn")])
+meta_upgrades = Array[Resource("res://resources/meta_upgrades/meta_upgrade.gd")]([ExtResource("3_irimn"), ExtResource("4_syute")])
 
 [node name="Background" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -103,6 +104,7 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 8
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/MarginContainer"]
+clip_contents = false
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0

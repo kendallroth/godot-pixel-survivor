@@ -6,6 +6,7 @@ class_name Player
 @onready var health_component := $HealthComponent
 @onready var sprite_parent := $BodySpriteParent
 @onready var damage_timer := $DamageTimer
+@onready var regen_timer := $RegenTimer
 @onready var health_bar := $HealthBar
 @onready var velocity_component := $VelocityComponent
 
@@ -13,12 +14,14 @@ class_name Player
 # TODO: Consider moving DamageTimer into script
 var number_colliding_bodies := 0
 var base_speed: float = 0
+var health_regen_amount = 0
 
 
 func _ready():
     $HurtboxArea.body_entered.connect(on_body_entered)
     $HurtboxArea.body_exited.connect(on_body_exited)
     damage_timer.timeout.connect(on_damage_timer_timeout)
+    regen_timer.timeout.connect(on_regen_timer_timeout)
     health_component.health_changed.connect(on_health_changed)
     health_component.died.connect(on_died)
     GameEvents.player_upgraded_ability.connect(on_player_upgraded_ability)
@@ -26,6 +29,10 @@ func _ready():
     
     base_speed = velocity_component.max_speed
     health_bar.value = health_component.health_percent
+
+    if MetaProgression.has_purchased_upgrade("health_regen"):
+        var health_regen_upgrade_quantity = MetaProgression.get_purchased_upgrade_quantity("health_regen")
+        health_regen_amount = health_regen_upgrade_quantity
 
 
 func _physics_process(delta):
@@ -57,6 +64,7 @@ func check_deal_damage():
     $HitAudioPlayerComponent.play_random()
 
 
+#region Listeners
 func on_body_entered(other_body: Node2D):
     number_colliding_bodies += 1
     check_deal_damage()
@@ -68,6 +76,13 @@ func on_body_exited(other_body: Node2D):
 
 func on_damage_timer_timeout():
     check_deal_damage()
+
+
+func on_regen_timer_timeout():
+    if health_component.has_full_health:
+        return
+
+    health_component.heal(health_regen_amount)
 
 
 func on_player_collected_pickup(pickup: PickupItem):
@@ -94,3 +109,4 @@ func on_player_upgraded_ability(upgrade: AbilityUpgrade, current_upgrades: Dicti
 
 func on_died():
     GameEvents.player_died.emit()
+#endregion
