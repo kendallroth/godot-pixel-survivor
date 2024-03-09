@@ -95,6 +95,12 @@ func on_player_collected_pickup(pickup: PickupItem):
 func on_health_changed(change: float, value: float, percent: float):
     health_bar.value = percent
 
+    # Only start regen timer once player has taken damage, and stop once at full health
+    if change < 0 && regen_timer.is_stopped():
+        regen_timer.start()
+    elif change > 0 && health_component.has_full_health:
+        regen_timer.stop()
+
     GameEvents.player_health_changed.emit(value, change, health_component.max_health)
 
 

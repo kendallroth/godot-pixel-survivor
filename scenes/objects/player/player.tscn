@@ -136,7 +136,6 @@ max_range = 125
 
 [node name="RegenTimer" type="Timer" parent="."]
 wait_time = 30.0
-autostart = true
 
 [node name="DamageTimer" type="Timer" parent="."]
 wait_time = 0.5
