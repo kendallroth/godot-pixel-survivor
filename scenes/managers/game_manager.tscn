@@ -5,5 +5,5 @@
 [node name="GameManager" type="Node"]
 script = ExtResource("1_pnb2e")
 
-[node name="LevelTimer" type="Timer" parent="."]
+[node name="GameTimer" type="Timer" parent="."]
 autostart = true

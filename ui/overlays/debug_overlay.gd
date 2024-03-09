@@ -12,7 +12,7 @@ var debug_items: Dictionary
 func _ready():
     # TODO: Change `DebugOverlay` to use a singleton to instead update from code (can initialize then...)
     GameEvents.enemy_count_changed.connect(on_enemy_count_changed)
-    GameEvents.level_difficulty_changed.connect(on_level_difficulty_changed)
+    GameEvents.game_difficulty_changed.connect(on_level_difficulty_changed)
     GameEvents.player_experience_changed.connect(on_player_experience_changed)
     GameEvents.player_health_changed.connect(on_player_health_changed)
     GameEvents.player_level_changed.connect(on_player_level_changed)

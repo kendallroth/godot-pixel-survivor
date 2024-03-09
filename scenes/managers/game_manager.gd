@@ -1,34 +1,33 @@
 extends Node
 class_name GameManager
 
-signal level_time_changed(seconds: int)
-signal level_difficulty_changed(difficulty: int)
+signal game_time_changed(seconds: int)
+signal game_difficulty_changed(difficulty: int)
 
 ## How frequently difficulty level is raised (in seconds)
-const DIFFICULTY_INTERVAL = 5
+const DIFFICULTY_RAISE_INTERVAL = 10
 
 ## Game length
-@export_range(0, 60 * 10) var level_time_total = 120
+@export_range(0, 60 * 10) var game_time_total = 120
 @export var experience_manager: ExperienceManager
 
-@onready var level_timer = $LevelTimer
+@onready var game_timer = $GameTimer
 
-var level_difficulty = 0
-## Time elapsed since level started
-var level_time_elapsed = 0
+var game_difficulty = 1
+## Time elapsed since game started
+var game_time_elapsed = 0
 
-var level_time_remaining:
+var game_time_remaining:
     get:
-        return level_time_total - level_time_elapsed
+        return game_time_total - game_time_elapsed
 
 
 func _ready():
     GameEvents.player_died.connect(on_player_died)
-    level_timer.timeout.connect(on_timer_tick)
+    game_timer.timeout.connect(on_timer_tick)
 
-    # set_process_input(true)
     # NOTE: Must wait to emit event until next frame (to allow listeners to attach)
-    Callable(func(): level_time_changed.emit(level_time_total)).call_deferred()
+    Callable(func(): game_time_changed.emit(game_time_total)).call_deferred()
 
 
 func _unhandled_input(event):
@@ -47,24 +46,24 @@ func pause_game():
 
 func show_game_over(win: bool):
     MetaProgression.write_save()
-    level_timer.paused = true
+    game_timer.paused = true
     var game_over_menu_instance: GameOverScreen = await GameScreens.add_scene(GameScreens.GAME_OVER_SCENE_REF, self)
     game_over_menu_instance.show_screen(win, experience_manager.total_experience)
 
 
 func on_timer_tick():
-    level_time_elapsed += 1
-    level_time_changed.emit(level_time_remaining)
+    game_time_elapsed += 1
+    game_time_changed.emit(game_time_remaining)
 
-    var target_difficulty = level_time_elapsed / DIFFICULTY_INTERVAL
-    if target_difficulty > level_difficulty:
-        level_difficulty += 1
-        level_difficulty_changed.emit(level_difficulty)
-        GameEvents.level_difficulty_changed.emit(level_difficulty)
+    var target_difficulty = game_time_elapsed / DIFFICULTY_RAISE_INTERVAL
+    if target_difficulty > game_difficulty:
+        game_difficulty += 1
+        game_difficulty_changed.emit(game_difficulty)
+        GameEvents.game_difficulty_changed.emit(game_difficulty)
 
-    if level_time_elapsed >= level_time_total:
+    if game_time_elapsed >= game_time_total:
         show_game_over(true)
-        level_timer.stop()
+        game_timer.stop()
 
 
 func on_player_died():

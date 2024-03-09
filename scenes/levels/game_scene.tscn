@@ -468,7 +468,6 @@ bg_color = Color(0.462745, 0.231373, 0.211765, 1)
 [node name="Managers" type="Node" parent="."]
 
 [node name="GameManager" parent="Managers" node_paths=PackedStringArray("experience_manager") instance=ExtResource("2_6f4mx")]
-level_time_total = 300
 experience_manager = NodePath("../ExperienceManager")
 
 [node name="ExperienceManager" parent="Managers" instance=ExtResource("3_y5mdu")]
@@ -485,9 +484,9 @@ level_manager = NodePath("../GameManager")
 
 [node name="Vignette" parent="UI" instance=ExtResource("12_8knsj")]
 
-[node name="HudUI" parent="UI" node_paths=PackedStringArray("experience_manager", "level_manager") instance=ExtResource("2_fnk0g")]
+[node name="HudUI" parent="UI" node_paths=PackedStringArray("experience_manager", "game_manager") instance=ExtResource("2_fnk0g")]
 experience_manager = NodePath("../../Managers/ExperienceManager")
-level_manager = NodePath("../../Managers/GameManager")
+game_manager = NodePath("../../Managers/GameManager")
 
 [node name="DebugOverlay" parent="UI" instance=ExtResource("9_rx8i1")]
 visible = false

@@ -18,4 +18,4 @@ signal enemy_killed(position: Vector2)
 signal enemy_spawned(position: Vector2)
 
 # Game/level signals
-signal level_difficulty_changed(level: int)
+signal game_difficulty_changed(level: int)

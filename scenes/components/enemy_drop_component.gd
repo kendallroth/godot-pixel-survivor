@@ -19,8 +19,6 @@ func on_died():
     if !item_table.size() or !owner is Node2D:
         return
 
-    # DEBUG
-    print("normal ", drop_chance, " adjusted ", adjusted_drop_chance)
     if randf() > adjusted_drop_chance:
         return
     

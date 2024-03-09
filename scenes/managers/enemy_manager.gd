@@ -12,10 +12,14 @@ var rat_enemy_scene := preload("res://scenes/objects/enemies/enemy_rat/enemy_rat
 
 @onready var spawn_timer = $SpawnTimer;
 
+## Minimum time between spawns (to prevent overrunning)
 var min_spawn_interval := 0.3
 var base_spawn_interval := 0
 ## Amount of time removed from base interval per difficulty step
 var spawn_time_reduction_per_difficulty := 0.025
+
+var enemies_per_spawn := 1
+var base_enemies_per_spawn := enemies_per_spawn
 
 var enemy_table := WeightedTable.new()
 
@@ -26,7 +30,7 @@ var total_enemy_count := 0
 func _ready():
     GameEvents.enemy_killed.connect(on_enemy_died)
     spawn_timer.timeout.connect(on_spawn_timer)
-    level_manager.level_difficulty_changed.connect(on_level_difficulty_changed)
+    level_manager.game_difficulty_changed.connect(on_game_difficulty_changed)
 
     enemy_table.add_item(rat_enemy_scene, 10)
     base_spawn_interval = spawn_timer.wait_time
@@ -54,6 +58,8 @@ func get_spawn_position(player_position: Vector2) -> Vector2:
 
     return spawn_position
 
+
+#region Listeners
 func on_spawn_timer():
     var player = get_tree().get_first_node_in_group("player") as Node2D
     if !player:
@@ -61,17 +67,19 @@ func on_spawn_timer():
     
     spawn_timer.start()
     
-    var entities_layer := get_tree().get_first_node_in_group("layer_entities")
-    var enemy_scene = enemy_table.get_item()
-    var enemy := enemy_scene.instantiate() as Node2D
-    enemy.global_position = get_spawn_position(player.global_position)
-    entities_layer.add_child(enemy)
+    for i in enemies_per_spawn:
+        print("spawning ", i)
+        var entities_layer := get_tree().get_first_node_in_group("layer_entities")
+        var enemy_scene = enemy_table.get_item()
+        var enemy := enemy_scene.instantiate() as Node2D
+        enemy.global_position = get_spawn_position(player.global_position)
+        entities_layer.add_child(enemy)
 
-    current_enemy_count += 1
-    total_enemy_count += 1
+        current_enemy_count += 1
+        total_enemy_count += 1
 
-    GameEvents.enemy_spawned.emit(enemy.global_position)
-    GameEvents.enemy_count_changed.emit(current_enemy_count, total_enemy_count)
+        GameEvents.enemy_spawned.emit(enemy.global_position)
+        GameEvents.enemy_count_changed.emit(current_enemy_count, total_enemy_count)
 
 
 func on_enemy_died(_position: Vector2):
@@ -80,16 +88,19 @@ func on_enemy_died(_position: Vector2):
     GameEvents.enemy_count_changed.emit(current_enemy_count, total_enemy_count)
 
 
-func on_level_difficulty_changed(difficulty: int):
-    if spawn_timer.wait_time <= min_spawn_interval:
-        return
+func on_game_difficulty_changed(difficulty: int):
+    # Skip spawn timer changes once minimum spawn interval has been reached
+    if spawn_timer.wait_time > min_spawn_interval:
+        var time_removed_for_difficulty := spawn_time_reduction_per_difficulty * (difficulty - 1)
+        var new_spawn_time: float = max(base_spawn_interval - time_removed_for_difficulty, min_spawn_interval)
+        spawn_timer.wait_time = new_spawn_time
 
-    var time_removed_for_difficulty := spawn_time_reduction_per_difficulty * difficulty
-    var new_spawn_time: float = max(base_spawn_interval - time_removed_for_difficulty, min_spawn_interval)
-    spawn_timer.wait_time = new_spawn_time
+    # Increase amount of enemies spawned every set of difficulty levels
+    if difficulty % 5 == 0:
+        enemies_per_spawn += 1
 
-    if difficulty == 6:
+    if difficulty == 3:
         enemy_table.add_item(ghost_enemy_scene, 15)
-    elif difficulty == 12:
+    elif difficulty == 8:
         enemy_table.add_item(bat_enemy_scene, 8)
-
+#endregion
