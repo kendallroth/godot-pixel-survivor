@@ -13,6 +13,12 @@
 - Implement debug/testing system (console?)
   - Add XP, add level, drop pickup, etc
 - Investigate automatically detecting required child Nodes (like Unity's) `GetComponentInChildren`
+- Investigate using collision area/shape for detecting potential enemies in range (vs loops for range-based attacks)
+
+### Ideas
+
+- Staff weapon that shoots a projectile traveling in a straight line, damaging all enemies in contact
+- Bomb drop that will explode and damage enemies in area
 
 ## Bugs
 

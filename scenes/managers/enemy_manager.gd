@@ -4,10 +4,11 @@ class_name EnemyManager
 # Area that enemies should be spawned outside of (just over half diagonal window size)
 const SPAWN_RADIUS = 370
 
-@export_group("References")
 @export var level_manager: GameManager
-@export var basic_enemy_scene: PackedScene
-@export var ghost_enemy_scene: PackedScene
+
+var bat_enemy_scene := preload("res://scenes/objects/enemies/enemy_bat/enemy_bat.tscn")
+var ghost_enemy_scene := preload("res://scenes/objects/enemies/enemy_ghost/enemy_ghost.tscn")
+var rat_enemy_scene := preload("res://scenes/objects/enemies/enemy_rat/enemy_rat.tscn")
 
 @onready var spawn_timer = $SpawnTimer;
 
@@ -27,7 +28,7 @@ func _ready():
     spawn_timer.timeout.connect(on_spawn_timer)
     level_manager.level_difficulty_changed.connect(on_level_difficulty_changed)
 
-    enemy_table.add_item(basic_enemy_scene, 10)
+    enemy_table.add_item(rat_enemy_scene, 10)
     base_spawn_interval = spawn_timer.wait_time
 
 
@@ -87,5 +88,8 @@ func on_level_difficulty_changed(difficulty: int):
     var new_spawn_time: float = max(base_spawn_interval - time_removed_for_difficulty, min_spawn_interval)
     spawn_timer.wait_time = new_spawn_time
 
-    if difficulty == 10:
-        enemy_table.add_item(ghost_enemy_scene, 20)
+    if difficulty == 6:
+        enemy_table.add_item(ghost_enemy_scene, 15)
+    elif difficulty == 12:
+        enemy_table.add_item(bat_enemy_scene, 8)
+
